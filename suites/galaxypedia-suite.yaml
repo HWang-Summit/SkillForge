@@ -1,0 +1,24 @@
+name: galaxypedia-suite
+version: 0.1.0
+description: 面向 Codex 和 Claude Code 的 Galaxypedia 风格 wiki 工作流技能套件。
+entry_skill: galaxypedia-suite
+compatible_agents:
+  - codex
+  - claude-code
+included_modules:
+  - wiki-ingest
+  - wiki-query
+  - wiki-lint
+  - defuddle
+  - zotero-ingest
+  - json-canvas
+  - karpathy-guidelines
+shared_references:
+  - frontmatter
+  - templates
+  - obsidian-markdown
+excluded_modules:
+  - mineru-import
+notes:
+  - MinerU 解析能力有意委托给单独安装的 MinerU 技能。
+  - 后续新增技能时，默认作为独立目录加入 skills/；只有明确升级本套件时才修改 galaxypedia-suite。
