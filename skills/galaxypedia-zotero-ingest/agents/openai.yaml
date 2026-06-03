@@ -1,0 +1,8 @@
+interface:
+  display_name: "Galaxypedia Zotero"
+  short_description: "从 Zotero 摄入论文"
+  brand_color: "#7C3AED"
+  default_prompt: "使用 $galaxypedia-zotero-ingest 从 Zotero 文献库规划并摄入论文。"
+
+policy:
+  allow_implicit_invocation: true

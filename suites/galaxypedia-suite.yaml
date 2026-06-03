@@ -1,24 +1,25 @@
 name: galaxypedia-suite
-version: 0.1.0
-description: 面向 Codex 和 Claude Code 的 Galaxypedia 风格 wiki 工作流技能套件。
+version: 0.2.0
+description: 面向 Codex 和 Claude Code 的 Galaxypedia 兼容路由入口。
 entry_skill: galaxypedia-suite
 compatible_agents:
   - codex
   - claude-code
-included_modules:
-  - wiki-ingest
-  - wiki-query
-  - wiki-lint
-  - defuddle
-  - zotero-ingest
-  - json-canvas
-  - karpathy-guidelines
+included_skills:
+  - galaxypedia-wiki
+  - galaxypedia-wiki-ingest
+  - galaxypedia-wiki-query
+  - galaxypedia-wiki-lint
+  - galaxypedia-defuddle
+  - galaxypedia-zotero-ingest
+  - galaxypedia-mineru-import
+  - galaxypedia-json-canvas
+  - galaxypedia-karpathy-guidelines
+shared_references_owner: galaxypedia-wiki
 shared_references:
   - frontmatter
   - templates
   - obsidian-markdown
-excluded_modules:
-  - mineru-import
 notes:
-  - MinerU 解析能力有意委托给单独安装的 MinerU 技能。
-  - 后续新增技能时，默认作为独立目录加入 skills/；只有明确升级本套件时才修改 galaxypedia-suite。
+  - galaxypedia-suite 只保留兼容路由；新任务优先使用独立 galaxypedia-* 技能。
+  - galaxypedia-mineru-import 是 Galaxypedia raw ingest 专用技能，与通用 mineru-pdf-parse 并存。

@@ -1,0 +1,8 @@
+interface:
+  display_name: "Galaxypedia MinerU"
+  short_description: "文档解析到 Galaxypedia raw"
+  brand_color: "#DC2626"
+  default_prompt: "使用 $galaxypedia-mineru-import 将 PDF、Office 或图片解析为 Galaxypedia raw source。"
+
+policy:
+  allow_implicit_invocation: true

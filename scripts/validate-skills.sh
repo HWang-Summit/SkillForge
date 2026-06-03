@@ -4,43 +4,81 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 fail=0
 
+err() {
+  echo "$*" >&2
+  fail=1
+}
+
 while IFS= read -r -d '' skill; do
   skill_name="$(basename "$skill")"
   skill_md="$skill/SKILL.md"
+
   if [[ ! -f "$skill_md" ]]; then
-    echo "missing SKILL.md: $skill" >&2
-    fail=1
+    err "missing SKILL.md: $skill"
     continue
   fi
-  if ! sed -n '1,20p' "$skill_md" | grep -q '^name:'; then
-    echo "missing frontmatter name: $skill_md" >&2
-    fail=1
+
+  if ! sed -n '1p' "$skill_md" | grep -qx -- '---'; then
+    err "missing opening frontmatter marker: $skill_md"
   fi
-  if ! sed -n '1,20p' "$skill_md" | grep -q '^description:'; then
-    echo "missing frontmatter description: $skill_md" >&2
-    fail=1
+
+  if ! sed -n '1,40p' "$skill_md" | grep -q '^name:'; then
+    err "missing frontmatter name: $skill_md"
   fi
+
+  if ! sed -n '1,80p' "$skill_md" | grep -q '^description:'; then
+    err "missing frontmatter description: $skill_md"
+  fi
+
   declared_name="$(awk '/^name:/ {print $2; exit}' "$skill_md" | tr -d '"')"
   if [[ "$declared_name" != "$skill_name" ]]; then
-    echo "name mismatch: directory=$skill_name frontmatter=$declared_name" >&2
-    fail=1
+    err "name mismatch: directory=$skill_name frontmatter=$declared_name"
   fi
 done < <(find "$ROOT/skills" -mindepth 1 -maxdepth 1 -type d -print0)
 
-suite="$ROOT/suites/galaxypedia-suite.yaml"
-if [[ -f "$suite" ]]; then
-  while IFS= read -r ref; do
-    [[ -z "$ref" ]] && continue
-    if [[ ! -f "$ROOT/skills/galaxypedia-suite/references/$ref.md" ]]; then
-      echo "suite reference missing: $ref" >&2
-      fail=1
-    fi
-  done < <(awk '/included_modules:/ {flag=1; next} /shared_references:/ {flag=0} flag && /^  - / {print $2}' "$suite")
+required_galaxypedia=(
+  galaxypedia-wiki
+  galaxypedia-wiki-ingest
+  galaxypedia-wiki-query
+  galaxypedia-wiki-lint
+  galaxypedia-defuddle
+  galaxypedia-zotero-ingest
+  galaxypedia-mineru-import
+  galaxypedia-json-canvas
+  galaxypedia-karpathy-guidelines
+  galaxypedia-suite
+)
 
-  if find "$ROOT/skills/galaxypedia-suite" -type f | grep -q 'mineru-import'; then
-    echo "mineru-import should not be bundled in galaxypedia-suite" >&2
-    fail=1
-  fi
+for skill in "${required_galaxypedia[@]}"; do
+  [[ -f "$ROOT/skills/$skill/SKILL.md" ]] || err "missing Galaxypedia skill: $skill"
+done
+
+for ref in frontmatter templates obsidian-markdown; do
+  [[ -f "$ROOT/skills/galaxypedia-wiki/references/$ref.md" ]] || err "missing Galaxypedia shared reference: $ref"
+done
+
+if [[ -d "$ROOT/skills/galaxypedia-suite/references" ]]; then
+  err "galaxypedia-suite should not carry workflow references; use independent skills"
+fi
+
+[[ -f "$ROOT/skills/skillforge-sync-installed-skills/SKILL.md" ]] || err "missing skillforge-sync-installed-skills"
+[[ -x "$ROOT/scripts/sync-installed-skills.sh" ]] || err "sync-installed-skills.sh is missing or not executable"
+
+private_path_pattern='/U''sers/'
+if rg -n "$private_path_pattern" "$ROOT/skills" "$ROOT/README.md" "$ROOT/scripts" "$ROOT/suites" "$ROOT/config/skillforge.example.json" >/tmp/skillforge-private-paths.$$ 2>/dev/null; then
+  cat /tmp/skillforge-private-paths.$$ >&2
+  rm -f /tmp/skillforge-private-paths.$$
+  err "private absolute paths found in tracked content"
+else
+  rm -f /tmp/skillforge-private-paths.$$
+fi
+
+if rg -n 'skills/(wiki-ingest|wiki-query|wiki-lint|defuddle|zotero-ingest|mineru-import|json-canvas|karpathy-guidelines)/SKILL\.md' "$ROOT/skills/galaxypedia-" >/tmp/skillforge-old-paths.$$ 2>/dev/null; then
+  cat /tmp/skillforge-old-paths.$$ >&2
+  rm -f /tmp/skillforge-old-paths.$$
+  err "old Galaxypedia skill paths found"
+else
+  rm -f /tmp/skillforge-old-paths.$$
 fi
 
 if [[ "$fail" -ne 0 ]]; then

@@ -1,0 +1,8 @@
+interface:
+  display_name: "Galaxypedia Defuddle"
+  short_description: "清洗网页到 raw/articles"
+  brand_color: "#0D9488"
+  default_prompt: "使用 $galaxypedia-defuddle 清洗网页文章 URL 并保存为 Galaxypedia raw source。"
+
+policy:
+  allow_implicit_invocation: true

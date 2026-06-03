@@ -1,0 +1,8 @@
+interface:
+  display_name: "Galaxypedia Lint"
+  short_description: "检查 wiki 健康状态"
+  brand_color: "#CA8A04"
+  default_prompt: "使用 $galaxypedia-wiki-lint 检查 Galaxypedia wiki 的死链、孤儿页和索引一致性。"
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,8 @@
+interface:
+  display_name: "Galaxypedia Query"
+  short_description: "基于 wiki 查询和总结"
+  brand_color: "#0891B2"
+  default_prompt: "使用 $galaxypedia-wiki-query 基于 Galaxypedia wiki 回答问题。"
+
+policy:
+  allow_implicit_invocation: true

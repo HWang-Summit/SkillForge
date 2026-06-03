@@ -1,0 +1,8 @@
+interface:
+  display_name: "Galaxypedia Ingest"
+  short_description: "摄入 raw 来源到 wiki"
+  brand_color: "#16A34A"
+  default_prompt: "使用 $galaxypedia-wiki-ingest 摄入 raw 来源并更新 Galaxypedia wiki。"
+
+policy:
+  allow_implicit_invocation: true

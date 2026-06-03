@@ -1,0 +1,8 @@
+interface:
+  display_name: "Galaxypedia Canvas"
+  short_description: "创建 Obsidian JSON Canvas"
+  brand_color: "#0284C7"
+  default_prompt: "使用 $galaxypedia-json-canvas 创建或更新 Galaxypedia 的 Obsidian Canvas 图谱。"
+
+policy:
+  allow_implicit_invocation: true
