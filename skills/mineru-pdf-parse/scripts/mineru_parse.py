@@ -479,6 +479,24 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def resolve_mode(requested_mode: str) -> str:
+    if requested_mode == "auto":
+        return "precision" if os.environ.get("MINERU_API_TOKEN") else "agent"
+    return requested_mode
+
+
+def print_mode_notice(requested_mode: str, resolved_mode: str) -> None:
+    has_token = bool(os.environ.get("MINERU_API_TOKEN"))
+    if resolved_mode == "precision":
+        print("已检测到 MINERU_API_TOKEN，使用 MinerU precision 模式。", flush=True)
+        return
+
+    if requested_mode == "agent" and has_token:
+        print("已检测到 MINERU_API_TOKEN，但用户显式指定 --mode agent；将使用免费 agent 模式。", flush=True)
+    else:
+        print("未检测到 MINERU_API_TOKEN，使用 MinerU agent 模式；该模式通常不会返回图片资源。", flush=True)
+
+
 def main() -> int:
     global PROJECT_ROOT, MINERU_ROOT, OUTPUT_ROOT
 
@@ -488,9 +506,8 @@ def main() -> int:
         MINERU_ROOT = PROJECT_ROOT / "minerU"
         OUTPUT_ROOT = MINERU_ROOT / "outputs"
 
-    mode = args.mode
-    if mode == "auto":
-        mode = "precision" if os.environ.get("MINERU_API_TOKEN") else "agent"
+    mode = resolve_mode(args.mode)
+    print_mode_notice(args.mode, mode)
 
     try:
         output = resolve_output(args.source, args.out, args.force, args.file_name)

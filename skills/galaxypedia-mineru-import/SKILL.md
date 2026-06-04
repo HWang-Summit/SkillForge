@@ -36,16 +36,15 @@ MinerU 是 `/ingest` 的按需预处理器，不是 wiki 写入器。
 常用命令：
 
 ```bash
-conda run -n galaxypedia python scripts/mineru_parse.py <file-or-url> --category papers
+conda run -n galaxypedia python scripts/mineru_parse.py <file-or-url> --category papers --mode auto
 ```
 
 其他用法：
 
 ```bash
-conda run -n galaxypedia python scripts/mineru_parse.py <file-or-url> --out raw/papers/example.mineru.md
-conda run -n galaxypedia python scripts/mineru_parse.py <zotero-pdf> --out raw/papers/my-paper/example.mineru.md
-conda run -n galaxypedia python scripts/mineru_parse.py <file-or-url> --mode agent
-conda run -n galaxypedia python scripts/mineru_parse.py <url> --mode precision --model-version vlm
+conda run -n galaxypedia python scripts/mineru_parse.py <file-or-url> --out raw/papers/example.mineru.md --mode auto
+conda run -n galaxypedia python scripts/mineru_parse.py <zotero-pdf> --out raw/papers/my-paper/example.mineru.md --mode auto
+conda run -n galaxypedia python scripts/mineru_parse.py <url> --mode auto --model-version vlm
 ```
 
 Zotero 来源先用 `skills/galaxypedia-zotero-ingest/SKILL.md` 和 `scripts/zotero_ingest.py export ...` 解析 metadata、collection 和 PDF path。使用 export JSON 中的 `selected_pdf.resolved_path` 作为输入，`recommended_raw_output` 作为 `--out`。
@@ -70,9 +69,10 @@ Markdown 中的 `![](images/figure.jpg)` 会改写为 `![[example.mineru/images/
 
 ## API 选择
 
-- `agent` 模式使用 MinerU 轻量 API，不需要 token，但文件大小和页数限制更小。
-- `precision` 模式使用 MinerU 精准 API，需要环境变量 `MINERU_API_TOKEN`。
-- `auto` 模式检测到 `MINERU_API_TOKEN` 时走精准 API，否则走轻量 API。
+- 常规任务使用 `--mode auto`。检测到 `MINERU_API_TOKEN` 时走 precision，否则走 agent。
+- `precision` 模式使用 MinerU 精准 API，需要环境变量 `MINERU_API_TOKEN`，会从结果 zip 中保存图片资源。
+- `agent` 模式使用 MinerU 轻量 API，不需要 token，但通常只返回 Markdown，不返回图片资源；只有用户明确要求免费轻量模式时才手动指定 `--mode agent`。
+- 论文摄入如果需要图、表、流程图或图片资源，必须让运行脚本的进程环境能读取到 `MINERU_API_TOKEN`，并使用 `--mode auto` 或 `--mode precision`。
 
 ## Token 设置
 
@@ -82,7 +82,7 @@ Markdown 中的 `![](images/figure.jpg)` 会改写为 `![[example.mineru/images/
 export MINERU_API_TOKEN='你的-token'
 ```
 
-当前项目已验证：放在 `~/.zprofile` 中时，登录 shell 可以读取到该环境变量。`~/.zprofile` 适合放环境变量；不要放会打印内容、启动程序或切换目录的命令。
+脚本只从运行进程环境读取 `MINERU_API_TOKEN`。如果终端里有 token 但 Codex/Claude Code 没有，通常是 GUI 或 agent 进程没有继承 shell 环境；请在启动 Codex、Claude Code 或 cc-switch 的环境中设置该变量，或从带 token 的 shell 启动相关进程。
 
 ## 敏感文档
 

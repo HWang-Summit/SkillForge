@@ -34,13 +34,13 @@ description: 当用户需要使用 MinerU 解析 PDF、本地或远程 PDF 转 M
 从目标项目根目录运行：
 
 ```bash
-python "$HOME/.codex/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-url>
+python "$HOME/.codex/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-url> --mode auto
 ```
 
 如果当前目录不是项目根目录：
 
 ```bash
-python "$HOME/.codex/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-url> --project-root /path/to/project
+python "$HOME/.codex/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-url> --project-root /path/to/project --mode auto
 ```
 
 ## Claude Code 命令
@@ -48,18 +48,18 @@ python "$HOME/.codex/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-ur
 从目标项目根目录运行：
 
 ```bash
-python "$HOME/.claude/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-url>
+python "$HOME/.claude/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-url> --mode auto
 ```
 
 如果当前目录不是项目根目录：
 
 ```bash
-python "$HOME/.claude/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-url> --project-root /path/to/project
+python "$HOME/.claude/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-url> --project-root /path/to/project --mode auto
 ```
 
 ## 常用参数
 
-- `--mode auto|agent|precision`：默认 `auto`。检测到 `MINERU_API_TOKEN` 时使用 `precision`，否则使用 `agent`。
+- `--mode auto|agent|precision`：默认 `auto`。检测到 `MINERU_API_TOKEN` 时使用 `precision`，否则使用 `agent`。常规任务使用 `auto`，不要手动指定 `agent`，除非用户明确要求免费轻量模式。
 - `--language ch|en`：解析语言。中文 PDF 用 `ch`，英文论文建议用 `en`。
 - `--page-range 1-5`：只解析指定页码范围。
 - `--ocr`：扫描版或图片型 PDF 启用 OCR。
@@ -82,6 +82,8 @@ Markdown 图片链接保持普通相对链接：
 ![](example.mineru/images/figure.jpg)
 ```
 
+如果需要图片、图表资源或完整资源目录，必须确保运行脚本的 Codex/Claude Code 进程环境中能读取到 `MINERU_API_TOKEN`，让 `--mode auto` 自动进入 precision 模式。agent 模式通常只返回 Markdown，不返回图片资源。
+
 ## 依赖和 Token
 
 脚本依赖 Python 3 和 `requests`。如缺少依赖，在目标环境中安装：
@@ -95,5 +97,7 @@ pip install requests
 ```bash
 export MINERU_API_TOKEN='你的 MinerU API Token'
 ```
+
+脚本只从运行进程环境读取 `MINERU_API_TOKEN`，不会读取仓库配置文件或 shell 启动文件。如果终端里有 token 但 Codex/Claude Code 没有，通常是 GUI 或 agent 进程没有继承 shell 环境；请在启动 Codex、Claude Code 或 cc-switch 的环境中设置该变量，或从带 token 的 shell 启动相关进程。
 
 不要把 token 写入项目文件、skill 文件、README、日志或聊天内容。
