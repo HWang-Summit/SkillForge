@@ -9,6 +9,10 @@ err() {
   fail=1
 }
 
+warn() {
+  echo "warning: $*" >&2
+}
+
 while IFS= read -r -d '' skill; do
   skill_name="$(basename "$skill")"
   skill_md="$skill/SKILL.md"
@@ -33,6 +37,14 @@ while IFS= read -r -d '' skill; do
   declared_name="$(awk '/^name:/ {print $2; exit}' "$skill_md" | tr -d '"')"
   if [[ "$declared_name" != "$skill_name" ]]; then
     err "name mismatch: directory=$skill_name frontmatter=$declared_name"
+  fi
+
+  if [[ -d "$skill/scripts" ]]; then
+    if rg -n '(API[_-]?KEY|TOKEN|SECRET|CREDENTIAL)' "$skill/SKILL.md" "$skill/scripts" >/dev/null 2>/dev/null; then
+      if ! rg -n '(\$HOME/\.skillforge/env|SKILLFORGE_ENV_FILE|load-skillforge-env|run_[A-Za-z0-9_-]+\.sh)' "$skill/SKILL.md" "$skill/scripts" >/dev/null 2>/dev/null; then
+        warn "scripted skill mentions secrets but does not document SkillForge env/launcher: $skill_name"
+      fi
+    fi
   fi
 done < <(find "$ROOT/skills" -mindepth 1 -maxdepth 1 -type d -print0)
 

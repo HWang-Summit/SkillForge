@@ -46,6 +46,27 @@ cp config/skillforge.example.json config/skillforge.local.json
 
 `config/skillforge.local.json` 已被 `.gitignore` 忽略。
 
+## 私密环境配置
+
+API token 和本机 Python 偏好不要写入技能文件或提交到 GitHub。需要让技能在 Codex 和 Claude Code 中稳定读取密钥时，使用本机私密 env 文件：
+
+```bash
+mkdir -p "$HOME/.skillforge"
+test -f "$HOME/.skillforge/env" || cp config/skillforge.env.example "$HOME/.skillforge/env"
+```
+
+然后只在 `$HOME/.skillforge/env` 中填写真实值，例如 `MINERU_API_TOKEN`、`MINERU_CONDA_ENV` 或 `MINERU_PYTHON`。脚本型技能应在执行前加载该文件；如需使用其他路径，可设置 `SKILLFORGE_ENV_FILE=/path/to/env`。
+
+当前 shell 或 `launchctl` 中已有的 token 可以保留，但 SkillForge 技能不依赖 GUI 进程是否继承这些环境变量。
+
+### 脚本型技能接入规范
+
+`$HOME/.skillforge/env` 是 SkillForge 的通用私密环境来源，不是 MinerU 专用。需要 API token、密钥或稳定 Python/CLI 环境的技能，都应提供技能内 launcher，例如 `skills/<skill-name>/scripts/run_<tool>.sh`。
+
+launcher 负责在执行真实脚本前加载私密 env，并选择可用运行环境。不要让 `SKILL.md` 指示 agent 直接运行裸 `python`、`python3`、`curl` 或 SDK 命令来访问带密钥的服务；Codex 和 Claude Code 不保证继承同一套 shell 或 GUI 环境。
+
+当前参考实现是 `mineru-pdf-parse/scripts/run_mineru_parse.sh`。后续新增脚本型密钥技能时，应复用同样模式，或在仓库维护脚本中加载 `scripts/load-skillforge-env.sh`。
+
 ## 常用维护命令
 
 校验技能：

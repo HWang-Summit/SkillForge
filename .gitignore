@@ -1,3 +1,4 @@
 dist/
 .DS_Store
 config/skillforge.local.json
+config/skillforge.env.local

@@ -28,26 +28,21 @@ description: 当用户需要使用 MinerU 解析 PDF、本地或远程 PDF 转 M
 - 如果不是项目根目录，运行脚本时传入 `--project-root <项目根目录>`。
 - MinerU 是云端解析服务。未公开论文、审稿材料、含隐私或授权受限内容的 PDF，上传前必须提醒用户自行确认是否允许云端处理。
 - 不要记录、打印或写入 `MINERU_API_TOKEN`。
-- 运行后先看脚本打印的 `Python:` 和 `MINERU_API_TOKEN source:`。如果 `Python:` 指向 macOS 系统 Python，改用 `python`、`conda run -n base python` 或显式 conda Python。
+- 始终通过 `run_mineru_parse.sh` 运行，不要直接调用裸 `python` 或 `python3`。
+- 运行后先看脚本打印的 `Selected Python command:`、`Python:` 和 `MINERU_API_TOKEN source:`。如果 token 来源是 `none`，本次会降级到 agent 模式。
 
 ## Codex 命令
 
 从目标项目根目录运行：
 
 ```bash
-python "$HOME/.codex/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-url> --mode auto
-```
-
-如果 `python` 不是目标环境：
-
-```bash
-conda run -n base python "$HOME/.codex/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-url> --mode auto
+"$HOME/.codex/skills/mineru-pdf-parse/scripts/run_mineru_parse.sh" <pdf-or-url> --mode auto
 ```
 
 如果当前目录不是项目根目录：
 
 ```bash
-python "$HOME/.codex/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-url> --project-root /path/to/project --mode auto
+"$HOME/.codex/skills/mineru-pdf-parse/scripts/run_mineru_parse.sh" <pdf-or-url> --project-root /path/to/project --mode auto
 ```
 
 ## Claude Code 命令
@@ -55,19 +50,13 @@ python "$HOME/.codex/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-ur
 从目标项目根目录运行：
 
 ```bash
-python "$HOME/.claude/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-url> --mode auto
-```
-
-不要用裸 `python3`。在 macOS 或 Claude Code Bash 中，`python3` 常会命中系统 Python。需要固定 Conda 时使用：
-
-```bash
-conda run -n base python "$HOME/.claude/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-url> --mode auto
+"$HOME/.claude/skills/mineru-pdf-parse/scripts/run_mineru_parse.sh" <pdf-or-url> --mode auto
 ```
 
 如果当前目录不是项目根目录：
 
 ```bash
-python "$HOME/.claude/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-url> --project-root /path/to/project --mode auto
+"$HOME/.claude/skills/mineru-pdf-parse/scripts/run_mineru_parse.sh" <pdf-or-url> --project-root /path/to/project --mode auto
 ```
 
 ## 常用参数
@@ -105,13 +94,23 @@ Markdown 图片链接保持普通相对链接：
 pip install requests
 ```
 
-精准解析需要环境变量：
+精准解析需要 `MINERU_API_TOKEN`。推荐把本机私密变量写入 `$HOME/.skillforge/env`，由 `run_mineru_parse.sh` 在执行前自动加载：
 
 ```bash
-export MINERU_API_TOKEN='你的 MinerU API Token'
+mkdir -p "$HOME/.skillforge"
+touch "$HOME/.skillforge/env"
 ```
 
-脚本先从运行进程环境读取 `MINERU_API_TOKEN`；如果缺失且运行在 macOS，会 fallback 到 `launchctl getenv MINERU_API_TOKEN`。`launchctl` 只用于读取 token，不会把 token 打印出来或写入文件。
+如果当前目录是 SkillForge 仓库，也可以用 `cp config/skillforge.env.example "$HOME/.skillforge/env"` 初始化模板。然后在 `$HOME/.skillforge/env` 中填写：
+
+```bash
+MINERU_API_TOKEN=你的 MinerU API Token
+MINERU_CONDA_ENV=base
+```
+
+如需固定 Python，可在同一文件中设置 `MINERU_PYTHON=/path/to/python`。也可以用 `SKILLFORGE_ENV_FILE=/path/to/env` 指定其他私密 env 文件。
+
+`run_mineru_parse.sh` 先加载 SkillForge 私密 env，再运行 Python 脚本。Python 脚本会从运行进程环境读取 `MINERU_API_TOKEN`；如果缺失且运行在 macOS，会 fallback 到 `launchctl getenv MINERU_API_TOKEN`。`launchctl` 只用于读取 token，不会把 token 打印出来或写入文件。
 
 如果终端里有 token 但 Codex/Claude Code 没有，通常是 GUI 或 agent 进程没有继承 shell 环境。用下面的命令检查 GUI 环境，不能只看 `launchctl getenv` 的退出码：
 
