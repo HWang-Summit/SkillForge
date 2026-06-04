@@ -11,6 +11,7 @@ write_inventory=0
 cc_switch_skills_dir="${CC_SWITCH_SKILLS_DIR:-}"
 galaxypedia_skills_dir="${GALAXYPEDIA_SKILLS_DIR:-}"
 skip_names=(
+  _shared
   galaxypedia-suite
   skillforge-sync-installed-skills
 )
@@ -214,6 +215,7 @@ if [[ "$write_inventory" -eq 1 ]]; then
     printf '  "skills": [\n'
     first=1
     while IFS= read -r skill; do
+      [[ -f "$skill/SKILL.md" ]] || continue
       name="$(basename "$skill")"
       hash="$(dir_hash "$skill")"
       if [[ "$first" -eq 0 ]]; then

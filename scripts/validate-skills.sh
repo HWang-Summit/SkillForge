@@ -17,6 +17,10 @@ while IFS= read -r -d '' skill; do
   skill_name="$(basename "$skill")"
   skill_md="$skill/SKILL.md"
 
+  if [[ "$skill_name" == "_shared" ]]; then
+    continue
+  fi
+
   if [[ ! -f "$skill_md" ]]; then
     err "missing SKILL.md: $skill"
     continue
@@ -75,6 +79,17 @@ fi
 
 [[ -f "$ROOT/skills/skillforge-sync-installed-skills/SKILL.md" ]] || err "missing skillforge-sync-installed-skills"
 [[ -x "$ROOT/scripts/sync-installed-skills.sh" ]] || err "sync-installed-skills.sh is missing or not executable"
+
+if [[ -f "$ROOT/skills/nature-writing/SKILL.md" ]]; then
+  for ref in \
+    core/reader-workflow.md \
+    core/paper-type-taxonomy.md \
+    core/ethics.md \
+    core/terminology-ledger.md \
+    journal-formats/nat-comms.md; do
+    [[ -f "$ROOT/skills/_shared/$ref" ]] || err "missing nature-skills shared reference: skills/_shared/$ref"
+  done
+fi
 
 private_path_pattern='/U''sers/'
 if rg -n "$private_path_pattern" "$ROOT/skills" "$ROOT/README.md" "$ROOT/scripts" "$ROOT/suites" "$ROOT/config/skillforge.example.json" >/tmp/skillforge-private-paths.$$ 2>/dev/null; then
