@@ -1,0 +1,4 @@
+interface:
+  display_name: "修复 cc-switch 技能依赖"
+  short_description: "补齐单技能安装缺失的共享支持文件"
+  default_prompt: "检查 cc-switch 已安装技能是否缺少上游共享目录或相对依赖，并从给定 GitHub 仓库 dry-run 或修复。"

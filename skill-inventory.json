@@ -21,6 +21,7 @@
     {"name": "nature-reviewer", "content_hash": "6ad98791a4902a16d524aad55b8eeb0b64927a0b4e07803e0764e20755c06af8"},
     {"name": "nature-writing", "content_hash": "ff838b2e0868d3d8150433c1073d5907f87df5ed73ac33f6b856bca361f3d605"},
     {"name": "pdf-render-contact-sheet", "content_hash": "73180d52e7f426dce5994eb7bc5a694ae49dc3cf4d7f0e90e0864666126e779b"},
+    {"name": "skillforge-repair-cc-switch-skill", "content_hash": "392d431b6d9309537d1aab9cb19f7ec556fe879a5850de51bb652cbe51e4d6f0"},
     {"name": "skillforge-sync-installed-skills", "content_hash": "36f3d4502e7f5ff9d3c87f2baa1330a5ff071c0c3010dd4fd1fa188ad9af4ef0"}
   ]
 }
