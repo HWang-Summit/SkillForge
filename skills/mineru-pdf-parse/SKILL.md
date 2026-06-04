@@ -28,6 +28,7 @@ description: 当用户需要使用 MinerU 解析 PDF、本地或远程 PDF 转 M
 - 如果不是项目根目录，运行脚本时传入 `--project-root <项目根目录>`。
 - MinerU 是云端解析服务。未公开论文、审稿材料、含隐私或授权受限内容的 PDF，上传前必须提醒用户自行确认是否允许云端处理。
 - 不要记录、打印或写入 `MINERU_API_TOKEN`。
+- 运行后先看脚本打印的 `Python:` 和 `MINERU_API_TOKEN source:`。如果 `Python:` 指向 macOS 系统 Python，改用 `python`、`conda run -n base python` 或显式 conda Python。
 
 ## Codex 命令
 
@@ -35,6 +36,12 @@ description: 当用户需要使用 MinerU 解析 PDF、本地或远程 PDF 转 M
 
 ```bash
 python "$HOME/.codex/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-url> --mode auto
+```
+
+如果 `python` 不是目标环境：
+
+```bash
+conda run -n base python "$HOME/.codex/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-url> --mode auto
 ```
 
 如果当前目录不是项目根目录：
@@ -49,6 +56,12 @@ python "$HOME/.codex/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-ur
 
 ```bash
 python "$HOME/.claude/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-url> --mode auto
+```
+
+不要用裸 `python3`。在 macOS 或 Claude Code Bash 中，`python3` 常会命中系统 Python。需要固定 Conda 时使用：
+
+```bash
+conda run -n base python "$HOME/.claude/skills/mineru-pdf-parse/scripts/mineru_parse.py" <pdf-or-url> --mode auto
 ```
 
 如果当前目录不是项目根目录：
@@ -82,7 +95,7 @@ Markdown 图片链接保持普通相对链接：
 ![](example.mineru/images/figure.jpg)
 ```
 
-如果需要图片、图表资源或完整资源目录，必须确保运行脚本的 Codex/Claude Code 进程环境中能读取到 `MINERU_API_TOKEN`，让 `--mode auto` 自动进入 precision 模式。agent 模式通常只返回 Markdown，不返回图片资源。
+如果需要图片、图表资源或完整资源目录，必须确保脚本能读取到 `MINERU_API_TOKEN`，让 `--mode auto` 自动进入 precision 模式。agent 模式通常只返回 Markdown，不返回图片资源。
 
 ## 依赖和 Token
 
@@ -98,6 +111,14 @@ pip install requests
 export MINERU_API_TOKEN='你的 MinerU API Token'
 ```
 
-脚本只从运行进程环境读取 `MINERU_API_TOKEN`，不会读取仓库配置文件或 shell 启动文件。如果终端里有 token 但 Codex/Claude Code 没有，通常是 GUI 或 agent 进程没有继承 shell 环境；请在启动 Codex、Claude Code 或 cc-switch 的环境中设置该变量，或从带 token 的 shell 启动相关进程。
+脚本先从运行进程环境读取 `MINERU_API_TOKEN`；如果缺失且运行在 macOS，会 fallback 到 `launchctl getenv MINERU_API_TOKEN`。`launchctl` 只用于读取 token，不会把 token 打印出来或写入文件。
+
+如果终端里有 token 但 Codex/Claude Code 没有，通常是 GUI 或 agent 进程没有继承 shell 环境。用下面的命令检查 GUI 环境，不能只看 `launchctl getenv` 的退出码：
+
+```bash
+test -n "$(launchctl getenv MINERU_API_TOKEN)" && echo has-token || echo no-token
+```
+
+脚本输出 `MINERU_API_TOKEN source: env` 或 `launchctl` 都表示会走 precision；输出 `none` 才会降级 agent。
 
 不要把 token 写入项目文件、skill 文件、README、日志或聊天内容。

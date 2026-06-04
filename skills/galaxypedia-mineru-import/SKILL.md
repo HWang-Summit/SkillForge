@@ -33,6 +33,8 @@ MinerU 是 `/ingest` 的按需预处理器，不是 wiki 写入器。
 
 `scripts/mineru_parse.py` 是项目级工具，放在根目录 `scripts/`，而不是放在本 skill 目录下。原因是它直接读写本项目 `raw/`，依赖项目根路径和 Conda 环境，并且会被 `/ingest` 和用户手动命令共同调用。
 
+不要用裸 `python3`。在 macOS 或 Claude Code Bash 中，`python3` 常会命中系统 Python。Galaxypedia 项目优先使用 `conda run -n galaxypedia python ...`。
+
 常用命令：
 
 ```bash
@@ -69,7 +71,7 @@ Markdown 中的 `![](images/figure.jpg)` 会改写为 `![[example.mineru/images/
 
 ## API 选择
 
-- 常规任务使用 `--mode auto`。检测到 `MINERU_API_TOKEN` 时走 precision，否则走 agent。
+- 常规任务使用 `--mode auto`。脚本会先检测进程环境中的 `MINERU_API_TOKEN`，macOS 下再 fallback 到 `launchctl getenv MINERU_API_TOKEN`；检测到 token 时走 precision，否则走 agent。
 - `precision` 模式使用 MinerU 精准 API，需要环境变量 `MINERU_API_TOKEN`，会从结果 zip 中保存图片资源。
 - `agent` 模式使用 MinerU 轻量 API，不需要 token，但通常只返回 Markdown，不返回图片资源；只有用户明确要求免费轻量模式时才手动指定 `--mode agent`。
 - 论文摄入如果需要图、表、流程图或图片资源，必须让运行脚本的进程环境能读取到 `MINERU_API_TOKEN`，并使用 `--mode auto` 或 `--mode precision`。
@@ -82,7 +84,7 @@ Markdown 中的 `![](images/figure.jpg)` 会改写为 `![[example.mineru/images/
 export MINERU_API_TOKEN='你的-token'
 ```
 
-脚本只从运行进程环境读取 `MINERU_API_TOKEN`。如果终端里有 token 但 Codex/Claude Code 没有，通常是 GUI 或 agent 进程没有继承 shell 环境；请在启动 Codex、Claude Code 或 cc-switch 的环境中设置该变量，或从带 token 的 shell 启动相关进程。
+脚本先从运行进程环境读取 `MINERU_API_TOKEN`；如果缺失且运行在 macOS，会 fallback 到 `launchctl getenv MINERU_API_TOKEN`。脚本只打印 token 来源类型，不打印 token 内容。如果输出 `MINERU_API_TOKEN source: none`，才说明本次会降级 agent。
 
 ## 敏感文档
 

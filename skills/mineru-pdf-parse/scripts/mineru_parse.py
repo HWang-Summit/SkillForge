@@ -7,6 +7,7 @@ import argparse
 import io
 import os
 import re
+import subprocess
 import sys
 import time
 import urllib.parse
@@ -41,6 +42,12 @@ def get_requests():
 class ParseResult:
     markdown: str
     assets: dict[str, bytes]
+
+
+@dataclass(frozen=True)
+class TokenInfo:
+    token: str | None
+    source: str
 
 
 class ChineseArgumentParser(argparse.ArgumentParser):
@@ -414,8 +421,7 @@ def find_first_url(value: Any, key: str) -> str | None:
     return found if isinstance(found, str) and found.startswith(("http://", "https://")) else None
 
 
-def parse_precision(source: str, args: argparse.Namespace) -> ParseResult:
-    token = os.environ.get("MINERU_API_TOKEN")
+def parse_precision(source: str, args: argparse.Namespace, token: str | None) -> ParseResult:
     if not token:
         raise MinerUError("precision 模式需要先设置环境变量 MINERU_API_TOKEN")
     headers = {"Authorization": f"Bearer {token}"}
@@ -479,14 +485,41 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def resolve_mode(requested_mode: str) -> str:
+def resolve_mineru_token() -> TokenInfo:
+    token = os.environ.get("MINERU_API_TOKEN")
+    if token:
+        return TokenInfo(token=token, source="env")
+
+    if sys.platform == "darwin":
+        try:
+            result = subprocess.run(
+                ["launchctl", "getenv", "MINERU_API_TOKEN"],
+                capture_output=True,
+                check=False,
+                text=True,
+                timeout=2,
+            )
+        except (OSError, subprocess.SubprocessError):
+            result = None
+        if result and result.returncode == 0:
+            token = result.stdout.strip()
+            if token:
+                return TokenInfo(token=token, source="launchctl")
+
+    return TokenInfo(token=None, source="none")
+
+
+def resolve_mode(requested_mode: str, token_info: TokenInfo) -> str:
     if requested_mode == "auto":
-        return "precision" if os.environ.get("MINERU_API_TOKEN") else "agent"
+        return "precision" if token_info.token else "agent"
     return requested_mode
 
 
-def print_mode_notice(requested_mode: str, resolved_mode: str) -> None:
-    has_token = bool(os.environ.get("MINERU_API_TOKEN"))
+def print_mode_notice(requested_mode: str, resolved_mode: str, token_info: TokenInfo) -> None:
+    print(f"Python: {sys.executable}", flush=True)
+    print(f"MINERU_API_TOKEN source: {token_info.source}", flush=True)
+
+    has_token = bool(token_info.token)
     if resolved_mode == "precision":
         print("已检测到 MINERU_API_TOKEN，使用 MinerU precision 模式。", flush=True)
         return
@@ -506,12 +539,13 @@ def main() -> int:
         MINERU_ROOT = PROJECT_ROOT / "minerU"
         OUTPUT_ROOT = MINERU_ROOT / "outputs"
 
-    mode = resolve_mode(args.mode)
-    print_mode_notice(args.mode, mode)
+    token_info = resolve_mineru_token()
+    mode = resolve_mode(args.mode, token_info)
+    print_mode_notice(args.mode, mode, token_info)
 
     try:
         output = resolve_output(args.source, args.out, args.force, args.file_name)
-        result = parse_precision(args.source, args) if mode == "precision" else parse_agent(args.source, args)
+        result = parse_precision(args.source, args, token_info.token) if mode == "precision" else parse_agent(args.source, args)
         written_assets = write_parse_result(output, result, args.force)
     except MinerUError as exc:
         print(f"mineru_parse.py: {exc}", file=sys.stderr)
