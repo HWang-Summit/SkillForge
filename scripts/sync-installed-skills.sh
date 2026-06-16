@@ -110,12 +110,18 @@ dir_hash() {
   local dir="$1"
   (
     cd "$dir"
-    find . -type f ! -name '.DS_Store' -print \
+    find . -type d -name '__pycache__' -prune -o -type f ! -name '.DS_Store' ! -name '*.pyc' -print \
       | LC_ALL=C sort \
       | while IFS= read -r file; do shasum -a 256 "$file"; done \
       | shasum -a 256 \
       | awk '{print $1}'
   )
+}
+
+cleanup_generated_files() {
+  local dir="$1"
+  find "$dir" -type d -name '__pycache__' -prune -exec rm -rf {} +
+  find "$dir" -type f \( -name '.DS_Store' -o -name '*.pyc' \) -delete
 }
 
 copy_skill() {
@@ -130,6 +136,7 @@ copy_skill() {
   private_path_pattern='/U''sers/'
 
   cp -R "$src" "$tmp/$name"
+  cleanup_generated_files "$tmp/$name"
   if rg -n "$private_path_pattern" "$tmp/$name" >/tmp/skillforge-sync-private-paths.$$ 2>/dev/null; then
     cat /tmp/skillforge-sync-private-paths.$$ >&2
     rm -f /tmp/skillforge-sync-private-paths.$$
