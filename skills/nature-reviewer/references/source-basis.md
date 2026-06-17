@@ -51,7 +51,14 @@
 - Reviewer outputs must distinguish:
   - what is supported by manuscript evidence
   - what is missing or technically weak
-  - what cannot be assessed from provided material
+  - what cannot be assessed from accepted file evidence
+- Manuscript evidence must come from accepted files only:
+  - manuscript PDFs
+  - MinerU Markdown and resources derived from manuscript PDFs
+  - rendered PDF pages, contact sheets, or selected single-page PNGs
+  - LaTeX source packages
+  - PDF visuals corresponding to LaTeX manuscripts
+- User chat text may identify files, request a review, or choose parameters, but it is not manuscript evidence.
 - When the manuscript packet is incomplete, the skill must use `AUTHOR_INPUT_NEEDED` or equivalent missing-evidence flags instead of inventing facts.
 
 ## Conservative implementation choices
@@ -68,10 +75,13 @@
 ## Implementation implications
 
 - If the user asks for an author rebuttal, route to `nature-response`, not this skill.
+- If the user asks for a review but supplies only pasted text, author notes, or conversational claims, ask for a PDF manuscript or a LaTeX source package with the corresponding PDF.
 - If the user asks for simulated peer review, stay in reviewer mode:
   - assess claims
   - identify likely interested readership
   - identify technical failings
   - avoid drafting editorial decision language as the default output
+- For PDF manuscripts, parse with `mineru-pdf-parse` and inspect rendered pages with `pdf-render-contact-sheet` before writing the review whenever those tools are available.
+- For LaTeX manuscripts, inspect the source package and the corresponding PDF contact sheet before writing the review.
 - If the manuscript seems technically valid but not clearly broad-interest, the reports may say so; the source explicitly separates technical validity from editorial selection.
 - If the manuscript is broad-interest but evidence is incomplete, the reports must still foreground technical failings because the source treats them as essential before the authors' case is established.

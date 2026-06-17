@@ -3,7 +3,7 @@
 ## Core axes derived from the source
 
 - `originality`
-  - Ask whether the work appears to report original scientific research and whether the main results or conclusions seem genuinely new from the provided material.
+  - Ask whether the work appears to report original scientific research and whether the main results or conclusions seem genuinely new from the accepted file evidence.
   - Flag when novelty is asserted but not well distinguished from prior work.
 - `scientific importance / significance`
   - Ask whether the work appears to be of outstanding scientific importance.
@@ -22,7 +22,7 @@
 
 - For `originality`:
   - What is the claimed advance?
-  - Is the distinction from prior work explicit and credible in the supplied manuscript?
+  - Is the distinction from prior work explicit and credible in the accepted file evidence?
 - For `scientific importance / significance`:
   - Does the manuscript support a case for outstanding importance, or only competent incremental progress?
   - Are the implications immediate and far-reaching, or mainly field-internal?
@@ -45,14 +45,14 @@
 
 ## Missing-evidence handling
 
-- If the manuscript text or figures are incomplete, do not infer absent validations or prior-work distinctions.
+- If the manuscript text or figures are incomplete in the accepted file evidence, do not infer absent validations or prior-work distinctions.
 - Use explicit markers such as:
-  - `Not assessable from provided material`
+  - `Not assessable from accepted file evidence`
   - `AUTHOR_INPUT_NEEDED`
-  - `Evidence not shown in the supplied manuscript excerpt`
+  - `Evidence not shown in the accepted files`
 
 ## Things this axis set must not do
 
 - Do not replace source-grounded axes with generic peer-review checklists unrelated to the local source.
-- Do not force exhaustive domain-specific methodological critique when the provided material does not support it.
+- Do not force exhaustive domain-specific methodological critique when the accepted file evidence does not support it.
 - Do not convert readability comments into copyediting line edits unless the user explicitly asks for that level of intervention.

@@ -6,7 +6,10 @@ description: >-
   peer-review style critique, novelty/significance/technical soundness assessment,
   reviewer-style manuscript evaluation, 审稿人视角评估, 预审稿意见, or Nature reviewer
   report. Return 3 reviewer reports plus a cross-review synthesis, grounded only in the
-  local Nature reviewer source basis.
+  local Nature reviewer source basis and file-derived manuscript evidence. For PDF
+  manuscripts, parse the PDF with mineru-pdf-parse and inspect PDF page thumbnails with
+  pdf-render-contact-sheet before reviewing. For LaTeX manuscripts, review the LaTeX
+  source plus the corresponding PDF thumbnails.
   Also trigger on general pre-submission review requests during academic writing even without the
   word "Nature", such as getting a mock peer review for any journal, critiquing a draft as a
   reviewer would, assessing novelty/rigor before submission, and Chinese phrasings like
@@ -25,37 +28,41 @@ response. If the user wants rebuttal writing, route to `nature-response`.
 
 ## Default stance
 
-- Ground the review only in the local source basis plus manuscript facts supplied by the user.
+- Ground the review only in the local source basis plus manuscript facts extracted from accepted files.
+- Treat user chat text only as task routing, file-location, or parameter-selection context; do not use it as manuscript evidence.
 - Evaluate the manuscript against source-grounded axes: `originality`, `scientific importance`, `interdisciplinary readership`, `technical soundness`, and `readability for nonspecialists`.
 - Return exactly `3 reviewer reports + 1 cross-review synthesis` unless the user explicitly asks for another structure.
 - The three reviewers may differ only in `emphasis`; do not invent reviewer identities, specialties, institutions, or biographies.
 - Identify who would be interested in the results and why.
 - Identify technical failings that must be addressed before the authors' case is established.
-- Distinguish clearly between what is supported, what is weak, and what is not assessable from the provided material.
+- Distinguish clearly between what is supported, what is weak, and what is not assessable from the accepted file evidence.
 - Do not claim the editor's final decision or certainty about fit to `Nature`.
 
 ## Accepted inputs
 
-The skill may receive:
+The review evidence package may contain only these file-derived inputs:
 
-- full manuscript draft
-- abstract, summary paragraph, or cover-summary style text
-- introduction, results, discussion, or methods excerpts
-- figure legends, selected figures, or result notes
-- author notes in Chinese or English describing the claimed contribution
-- pre-submission positioning notes
+- a manuscript PDF file;
+- MinerU Markdown and image resources derived from that PDF;
+- PDF page renderings, contact sheets, or selected single-page PNGs derived from that PDF;
+- a LaTeX source package, including the main `.tex`, directly referenced `.tex` files, bibliography files, and referenced figure/table assets;
+- a PDF rendering of the LaTeX manuscript and its contact sheet or selected single-page PNGs.
 
-If the provided material is partial, perform a bounded review and mark the assessment boundary explicitly.
+If the user supplies only pasted text, abstract text, author notes, or conversational claims, do not perform the review. Ask for a PDF manuscript or a LaTeX source package with the corresponding PDF. If accepted files are partial or cannot be fully parsed, perform only a bounded review and mark the assessment boundary explicitly.
 
 ## Workflow
 
-1. Identify the input scope and whether the job is a reviewer-style assessment rather than rebuttal drafting.
-2. Extract a shared manuscript fact base: main claim, visible evidence, claimed significance, likely readership, and visible limitations.
-3. Check readiness and label missing evidence or missing sections instead of inventing them.
-4. Assess the manuscript using the source-grounded axes.
-5. Generate `Reviewer 1`, `Reviewer 2`, and `Reviewer 3` using shared facts but different emphasis.
-6. Generate a `Cross-review synthesis` that captures consensus and weighting differences.
-7. Run QA for groundedness, coverage, role boundaries, and non-invention.
+1. Identify whether the job is a reviewer-style assessment rather than rebuttal drafting.
+2. Build the file evidence package.
+   - For a PDF manuscript, invoke `mineru-pdf-parse` to create Markdown and extracted resources, then invoke `pdf-render-contact-sheet` to create page PNGs and a contact sheet.
+   - For a LaTeX manuscript, read the source package and inspect the corresponding PDF through `pdf-render-contact-sheet`; if no corresponding PDF exists and the build entrypoint cannot be determined, ask for the PDF before reviewing.
+3. Record the evidence boundary: input type, files used, parse output, visual review output, missing files, unreadable pages, parsing failures, or layout anomalies.
+4. Extract a shared manuscript fact base from accepted files only: main claim, visible evidence, claimed significance, likely readership, and visible limitations.
+5. Check readiness and label missing evidence or missing sections instead of inventing them.
+6. Assess the manuscript using the source-grounded axes.
+7. Generate `Reviewer 1`, `Reviewer 2`, and `Reviewer 3` using shared facts but different emphasis.
+8. Generate a `Cross-review synthesis` that captures consensus and weighting differences.
+9. Run QA for file provenance, groundedness, coverage, role boundaries, and non-invention.
 
 ## Output format
 
@@ -63,7 +70,10 @@ Unless the user asks for another format, return:
 
 ```text
 Review setup
-- Input scope:
+- Input package:
+- Files used as evidence:
+- Parsed text source:
+- Visual review source:
 - Assessment boundary:
 - Shared manuscript claim summary:
 - Visible evidence base:
@@ -99,10 +109,11 @@ Risk / unsupported claims
 
 - Do not invent reviewer identities, specialty roles, or selection history.
 - Do not invent experiments, validations, controls, citations, figure details, line numbers, or prior-work distinctions not present in the input.
+- Do not use user-supplied conversational summaries, claims, notes, or background explanations as manuscript evidence.
 - Do not silently turn reviewer assessment into author rebuttal drafting.
 - Do not present the review as an editorial decision letter.
 - Do not state that the manuscript belongs in `Nature` as a settled fact.
-- Do not omit technical failings when the provided evidence does not establish the authors' case.
+- Do not omit technical failings when the accepted file evidence does not establish the authors' case.
 
 ## Related files
 
@@ -121,7 +132,7 @@ Risk / unsupported claims
 Use sources in this order:
 
 1. `references/editorial criteria and processes.md`
-2. manuscript facts supplied by the user
+2. manuscript facts extracted from accepted files
 3. conservative local implementation rules documented in `references/source-basis.md`
 
 If a user asks for policy-level certainty beyond this local source, state the limit instead of improvising broader journal policy.

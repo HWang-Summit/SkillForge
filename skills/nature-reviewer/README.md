@@ -16,13 +16,15 @@ Accordingly, this skill is intentionally conservative. It is grounded in the loc
 
 ## What it does
 
-- reads a manuscript draft, abstract, selected sections, figures, or author notes as a reviewer-facing input package
+- reviews only file-derived manuscript evidence: PDF manuscripts, MinerU outputs from those PDFs, rendered PDF thumbnails, LaTeX source packages, and corresponding PDF thumbnails
+- for PDF manuscripts, uses MinerU parsing plus PDF contact-sheet inspection before writing the review
+- for LaTeX manuscripts, uses the source package plus the corresponding PDF contact sheet before writing the review
 - evaluates the work against source-grounded `Nature`-style axes: `originality`, `scientific importance`, `interdisciplinary readership`, `technical soundness`, and `readability for nonspecialists`
 - generates `3` reviewer reports that differ only in `emphasis`, not in invented identity or specialty
 - states who would be interested in the results and why
 - identifies technical failings that must be addressed before the authors' case is established
 - synthesizes consensus and emphasis differences across the three reports
-- flags unsupported claims and material that cannot be assessed from the supplied evidence
+- flags unsupported claims and material that cannot be assessed from accepted file evidence
 
 ## When to use
 
@@ -54,12 +56,13 @@ Unless the user asks for another format, the skill returns:
 - Explicitly address `who will be interested in the new results and why`.
 - Explicitly identify `technical failings` that still block the authors' case.
 - Distinguish technical validity from broad-interest fit; the source treats these as related but not identical.
-- Mark `AUTHOR_INPUT_NEEDED`, `Not assessable from provided material`, or equivalent uncertainty labels instead of fabricating details.
+- Mark `AUTHOR_INPUT_NEEDED`, `Not assessable from accepted file evidence`, or equivalent uncertainty labels instead of fabricating details.
+- Do not use pasted abstracts, author notes, conversational summaries, or background explanations as manuscript evidence.
 
 ## Source hierarchy
 
 - `references/editorial criteria and processes.md` as the primary authoritative local source
-- user-supplied manuscript facts and evidence
+- manuscript facts extracted from accepted files
 - conservative local implementation rules summarized in `references/source-basis.md`
 
 This skill must not silently expand beyond that source basis into generic reviewer-role invention or journal-policy speculation.
@@ -82,4 +85,4 @@ nature-reviewer/
 
 ## Status
 
-Draft. The first version is source-defined and structured for grounded reviewer simulation, but it has not yet been validated against a library of real anonymized manuscript-review examples.
+Draft. The current version is source-defined and file-first: it is structured for grounded reviewer simulation from accepted manuscript files plus local Nature reviewer criteria, but it has not yet been validated against a library of real anonymized manuscript-review examples.
