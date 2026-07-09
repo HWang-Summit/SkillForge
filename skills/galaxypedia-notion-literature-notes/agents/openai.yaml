@@ -1,0 +1,8 @@
+interface:
+  display_name: "Galaxypedia Notion Notes"
+  short_description: "生成 Notion 文献阅读笔记"
+  brand_color: "#0F766E"
+  default_prompt: "使用 $galaxypedia-notion-literature-notes 将 Galaxypedia/wiki 论文整理为 Notion 文献阅读笔记。"
+
+policy:
+  allow_implicit_invocation: true

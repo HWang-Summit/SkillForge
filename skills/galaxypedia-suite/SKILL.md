@@ -1,6 +1,6 @@
 ---
 name: galaxypedia-suite
-description: Galaxypedia 兼容入口。当用户显式调用旧的 galaxypedia-suite，或需要从一个入口路由 Galaxypedia wiki 摄入、查询、lint、Defuddle、Zotero、MinerU、JSON Canvas、维护规则任务时使用。新任务优先触发独立的 galaxypedia-* 技能。
+description: Galaxypedia 兼容入口。当用户显式调用旧的 galaxypedia-suite，或需要从一个入口路由 Galaxypedia wiki 摄入、查询、Notion 阅读笔记、lint、Defuddle、Zotero、MinerU、JSON Canvas、维护规则任务时使用。新任务优先触发独立的 galaxypedia-* 技能。
 ---
 
 # Galaxypedia Suite
@@ -23,6 +23,7 @@ description: Galaxypedia 兼容入口。当用户显式调用旧的 galaxypedia-
 | Galaxypedia 总入口、路由、schema/frontmatter/template 约定 | `galaxypedia-wiki` |
 | 摄入、处理来源、更新 manifest/index/log、创建 summary/entity/concept 页面 | `galaxypedia-wiki-ingest` |
 | 基于 wiki 查询、解释、总结、比较或回答问题 | `galaxypedia-wiki-query` |
+| 将已摄入论文、summary、concept/entity 页面整理为 Notion 文献阅读笔记 | `galaxypedia-notion-literature-notes` |
 | lint、健康检查、死链、孤儿页、重复页面、manifest/source-index 一致性 | `galaxypedia-wiki-lint` |
 | 将网页、文章、博客、新闻或 HTML 文档页 URL 清洗到 `raw/articles/` | `galaxypedia-defuddle` |
 | Zotero item、DOI、collection、本地论文元数据或 Zotero PDF 附件摄入 | `galaxypedia-zotero-ingest` |

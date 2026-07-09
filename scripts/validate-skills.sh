@@ -56,6 +56,7 @@ required_galaxypedia=(
   galaxypedia-wiki
   galaxypedia-wiki-ingest
   galaxypedia-wiki-query
+  galaxypedia-notion-literature-notes
   galaxypedia-wiki-lint
   galaxypedia-defuddle
   galaxypedia-zotero-ingest
