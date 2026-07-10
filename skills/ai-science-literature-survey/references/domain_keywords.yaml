@@ -1,0 +1,57 @@
+{
+  "domain_terms": {
+    "Bioinformatics": [
+      "genomics",
+      "transcriptomics",
+      "proteomics",
+      "single-cell",
+      "spatial transcriptomics",
+      "multi-omics",
+      "protein",
+      "drug discovery",
+      "drug-drug interaction",
+      "DDI",
+      "pharmacophore",
+      "polypharmacy",
+      "gene regulation",
+      "variant",
+      "bioimage",
+      "biomedical"
+    ],
+    "Geospatial & Earth Informatics": [
+      "remote sensing",
+      "earth observation",
+      "geospatial",
+      "GIS",
+      "satellite",
+      "hyperspectral",
+      "SAR",
+      "LiDAR",
+      "land cover",
+      "climate",
+      "weather",
+      "ecology",
+      "biodiversity",
+      "disaster",
+      "flood",
+      "wildfire",
+      "carbon"
+    ],
+    "Astroinformatics": [
+      "astronomy",
+      "astrophysics",
+      "galaxy",
+      "photometric redshift",
+      "spectra",
+      "transient",
+      "light curve",
+      "radio astronomy",
+      "telescope",
+      "survey",
+      "exoplanet",
+      "gravitational lens",
+      "quasar",
+      "cosmology"
+    ]
+  }
+}

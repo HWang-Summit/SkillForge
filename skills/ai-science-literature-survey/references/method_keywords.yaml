@@ -1,0 +1,50 @@
+{
+  "method_terms": [
+    "artificial intelligence",
+    "machine learning",
+    "deep learning",
+    "foundation model",
+    "large language model",
+    "LLM",
+    "transformer",
+    "vision transformer",
+    "graph neural network",
+    "GNN",
+    "diffusion model",
+    "self-supervised",
+    "contrastive learning",
+    "multimodal",
+    "representation learning",
+    "spatiotemporal",
+    "neural operator",
+    "anomaly detection",
+    "segmentation",
+    "classification",
+    "prediction",
+    "generative model"
+  ],
+  "compact_method_terms": [
+    "artificial intelligence",
+    "machine learning",
+    "deep learning",
+    "foundation model",
+    "large language model",
+    "LLM",
+    "transformer",
+    "neural network"
+  ],
+  "seed_expansion_terms": [
+    "drug-drug interaction",
+    "DDI prediction",
+    "pharmacophore",
+    "polypharmacy",
+    "drug synergy",
+    "molecular graph",
+    "molecular representation learning",
+    "foundation model",
+    "large language model",
+    "remote sensing foundation model",
+    "photometric redshift",
+    "astronomical spectra"
+  ]
+}

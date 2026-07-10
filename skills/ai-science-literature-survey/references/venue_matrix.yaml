@@ -1,0 +1,1502 @@
+{
+  "venues": [
+    {
+      "key": "neurips",
+      "name": "NeurIPS",
+      "type": "conference",
+      "tier": "core",
+      "bucket": "Cross-domain",
+      "search_group": "ai_conference",
+      "aliases": [
+        "NeurIPS",
+        "Advances in Neural Information Processing Systems",
+        "Neural Information Processing Systems"
+      ],
+      "crossref_names": [
+        "NeurIPS",
+        "Advances in Neural Information Processing Systems"
+      ],
+      "official_url": "https://proceedings.neurips.cc/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "iclr",
+      "name": "ICLR",
+      "type": "conference",
+      "tier": "core",
+      "bucket": "Cross-domain",
+      "search_group": "ai_conference",
+      "aliases": [
+        "ICLR",
+        "International Conference on Learning Representations"
+      ],
+      "crossref_names": [
+        "International Conference on Learning Representations",
+        "ICLR"
+      ],
+      "official_url": "https://openreview.net/group?id=ICLR.cc",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "icml",
+      "name": "ICML",
+      "type": "conference",
+      "tier": "core",
+      "bucket": "Cross-domain",
+      "search_group": "ai_conference",
+      "aliases": [
+        "ICML",
+        "International Conference on Machine Learning",
+        "Proceedings of Machine Learning Research"
+      ],
+      "crossref_names": [
+        "International Conference on Machine Learning",
+        "Proceedings of Machine Learning Research",
+        "ICML"
+      ],
+      "official_url": "https://proceedings.mlr.press/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "cvpr",
+      "name": "CVPR",
+      "type": "conference",
+      "tier": "core",
+      "bucket": "Cross-domain",
+      "search_group": "ai_conference",
+      "aliases": [
+        "CVPR",
+        "Computer Vision and Pattern Recognition"
+      ],
+      "crossref_names": [
+        "Computer Vision and Pattern Recognition",
+        "CVPR"
+      ],
+      "official_url": "https://openaccess.thecvf.com/menu",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "iccv",
+      "name": "ICCV",
+      "type": "conference",
+      "tier": "core",
+      "bucket": "Cross-domain",
+      "search_group": "ai_conference",
+      "aliases": [
+        "ICCV",
+        "International Conference on Computer Vision"
+      ],
+      "crossref_names": [
+        "International Conference on Computer Vision",
+        "ICCV"
+      ],
+      "official_url": "https://openaccess.thecvf.com/menu",
+      "years_policy": {
+        "type": "odd_years"
+      }
+    },
+    {
+      "key": "eccv",
+      "name": "ECCV",
+      "type": "conference",
+      "tier": "core",
+      "bucket": "Cross-domain",
+      "search_group": "ai_conference",
+      "aliases": [
+        "ECCV",
+        "European Conference on Computer Vision"
+      ],
+      "crossref_names": [
+        "European Conference on Computer Vision",
+        "ECCV"
+      ],
+      "official_url": "https://www.ecva.net/papers.php",
+      "years_policy": {
+        "type": "even_years"
+      }
+    },
+    {
+      "key": "aaai",
+      "name": "AAAI",
+      "type": "conference",
+      "tier": "core",
+      "bucket": "Cross-domain",
+      "search_group": "ai_conference",
+      "aliases": [
+        "AAAI",
+        "AAAI Conference on Artificial Intelligence",
+        "Proceedings of the AAAI Conference on Artificial Intelligence"
+      ],
+      "crossref_names": [
+        "AAAI Conference on Artificial Intelligence",
+        "Proceedings of the AAAI Conference on Artificial Intelligence",
+        "AAAI"
+      ],
+      "official_url": "https://ojs.aaai.org/index.php/AAAI",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "ijcai",
+      "name": "IJCAI",
+      "type": "conference",
+      "tier": "core",
+      "bucket": "Cross-domain",
+      "search_group": "ai_conference",
+      "aliases": [
+        "IJCAI",
+        "International Joint Conference on Artificial Intelligence"
+      ],
+      "crossref_names": [
+        "International Joint Conference on Artificial Intelligence",
+        "IJCAI"
+      ],
+      "official_url": "https://www.ijcai.org/proceedings/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "kdd",
+      "name": "KDD",
+      "type": "conference",
+      "tier": "core",
+      "bucket": "Cross-domain",
+      "search_group": "ai_conference",
+      "aliases": [
+        "KDD",
+        "SIGKDD",
+        "Knowledge Discovery and Data Mining"
+      ],
+      "crossref_names": [
+        "Knowledge Discovery and Data Mining",
+        "SIGKDD",
+        "KDD"
+      ],
+      "official_url": "https://dl.acm.org/conference/kdd/proceedings",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "www",
+      "name": "WWW",
+      "type": "conference",
+      "tier": "core",
+      "bucket": "Cross-domain",
+      "search_group": "ai_conference",
+      "aliases": [
+        "The Web Conference",
+        "World Wide Web Conference",
+        "WWW"
+      ],
+      "crossref_names": [
+        "The Web Conference",
+        "World Wide Web Conference"
+      ],
+      "official_url": "https://www2026.thewebconf.org/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "cikm",
+      "name": "CIKM",
+      "type": "conference",
+      "tier": "core",
+      "bucket": "Cross-domain",
+      "search_group": "ai_conference",
+      "aliases": [
+        "CIKM",
+        "Information and Knowledge Management"
+      ],
+      "crossref_names": [
+        "Information and Knowledge Management",
+        "CIKM"
+      ],
+      "official_url": "https://dl.acm.org/conference/cikm/proceedings",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "wsdm",
+      "name": "WSDM",
+      "type": "conference",
+      "tier": "core",
+      "bucket": "Cross-domain",
+      "search_group": "ai_conference",
+      "aliases": [
+        "WSDM",
+        "Web Search and Data Mining"
+      ],
+      "crossref_names": [
+        "Web Search and Data Mining",
+        "WSDM"
+      ],
+      "official_url": "https://dl.acm.org/conference/wsdm/proceedings",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "acl",
+      "name": "ACL",
+      "type": "conference",
+      "tier": "tier2",
+      "bucket": "Cross-domain",
+      "search_group": "ai_conference",
+      "aliases": [
+        "ACL",
+        "Annual Meeting of the Association for Computational Linguistics"
+      ],
+      "crossref_names": [
+        "Annual Meeting of the Association for Computational Linguistics",
+        "ACL"
+      ],
+      "official_url": "https://aclanthology.org/events/acl-2026/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "emnlp",
+      "name": "EMNLP",
+      "type": "conference",
+      "tier": "tier2",
+      "bucket": "Cross-domain",
+      "search_group": "ai_conference",
+      "aliases": [
+        "EMNLP",
+        "Empirical Methods in Natural Language Processing"
+      ],
+      "crossref_names": [
+        "Empirical Methods in Natural Language Processing",
+        "EMNLP"
+      ],
+      "official_url": "https://aclanthology.org/events/emnlp-2026/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "naacl",
+      "name": "NAACL",
+      "type": "conference",
+      "tier": "tier2",
+      "bucket": "Cross-domain",
+      "search_group": "ai_conference",
+      "aliases": [
+        "NAACL",
+        "North American Chapter of the Association for Computational Linguistics"
+      ],
+      "crossref_names": [
+        "North American Chapter of the Association for Computational Linguistics",
+        "NAACL"
+      ],
+      "official_url": "https://aclanthology.org/events/naacl-2026/",
+      "years_policy": {
+        "type": "explicit",
+        "years": [
+          2024,
+          2025,
+          2026
+        ]
+      }
+    },
+    {
+      "key": "coling",
+      "name": "COLING",
+      "type": "conference",
+      "tier": "tier2",
+      "bucket": "Cross-domain",
+      "search_group": "ai_conference",
+      "aliases": [
+        "COLING",
+        "International Conference on Computational Linguistics"
+      ],
+      "crossref_names": [
+        "International Conference on Computational Linguistics",
+        "COLING"
+      ],
+      "official_url": "https://aclanthology.org/events/coling-2025/",
+      "years_policy": {
+        "type": "explicit",
+        "years": [
+          2025,
+          2026
+        ]
+      }
+    },
+    {
+      "key": "aistats",
+      "name": "AISTATS",
+      "type": "conference",
+      "tier": "tier2",
+      "bucket": "Cross-domain",
+      "search_group": "ai_conference",
+      "aliases": [
+        "AISTATS",
+        "International Conference on Artificial Intelligence and Statistics",
+        "Proceedings of Machine Learning Research"
+      ],
+      "crossref_names": [
+        "International Conference on Artificial Intelligence and Statistics",
+        "AISTATS"
+      ],
+      "official_url": "https://proceedings.mlr.press/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "uai",
+      "name": "UAI",
+      "type": "conference",
+      "tier": "tier2",
+      "bucket": "Cross-domain",
+      "search_group": "ai_conference",
+      "aliases": [
+        "UAI",
+        "Conference on Uncertainty in Artificial Intelligence",
+        "Uncertainty in Artificial Intelligence"
+      ],
+      "crossref_names": [
+        "Conference on Uncertainty in Artificial Intelligence",
+        "Uncertainty in Artificial Intelligence",
+        "UAI"
+      ],
+      "official_url": "https://auai.org/uai/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "ismb_eccb",
+      "name": "ISMB/ECCB",
+      "type": "conference",
+      "tier": "core",
+      "bucket": "Bioinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "ISMB",
+        "ECCB",
+        "Intelligent Systems for Molecular Biology"
+      ],
+      "crossref_names": [
+        "Intelligent Systems for Molecular Biology",
+        "ISMB",
+        "ECCB"
+      ],
+      "official_url": "https://www.iscb.org/ismb",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "recomb",
+      "name": "RECOMB",
+      "type": "conference",
+      "tier": "core",
+      "bucket": "Bioinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "RECOMB",
+        "Research in Computational Molecular Biology"
+      ],
+      "crossref_names": [
+        "Research in Computational Molecular Biology",
+        "RECOMB"
+      ],
+      "official_url": "https://recomb.org/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "miccai",
+      "name": "MICCAI",
+      "type": "conference",
+      "tier": "core",
+      "bucket": "Bioinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "MICCAI",
+        "Medical Image Computing and Computer Assisted Intervention"
+      ],
+      "crossref_names": [
+        "Medical Image Computing and Computer Assisted Intervention",
+        "MICCAI"
+      ],
+      "official_url": "https://conferences.miccai.org/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "igarss",
+      "name": "IGARSS",
+      "type": "conference",
+      "tier": "core",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "IGARSS",
+        "International Geoscience and Remote Sensing Symposium"
+      ],
+      "crossref_names": [
+        "International Geoscience and Remote Sensing Symposium",
+        "IGARSS"
+      ],
+      "official_url": "https://www.igarss.org/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "sigspatial",
+      "name": "ACM SIGSPATIAL",
+      "type": "conference",
+      "tier": "core",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "SIGSPATIAL",
+        "ACM SIGSPATIAL"
+      ],
+      "crossref_names": [
+        "ACM SIGSPATIAL",
+        "SIGSPATIAL"
+      ],
+      "official_url": "https://sigspatial2026.sigspatial.org/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "isprs",
+      "name": "ISPRS",
+      "type": "conference",
+      "tier": "core",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "ISPRS Congress",
+        "ISPRS Annals",
+        "ISPRS Archives"
+      ],
+      "crossref_names": [
+        "ISPRS",
+        "ISPRS Annals",
+        "ISPRS Archives"
+      ],
+      "official_url": "https://www.isprs.org/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "adass",
+      "name": "ADASS",
+      "type": "conference",
+      "tier": "core",
+      "bucket": "Astroinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "ADASS",
+        "Astronomical Data Analysis Software and Systems"
+      ],
+      "crossref_names": [
+        "Astronomical Data Analysis Software and Systems",
+        "ADASS"
+      ],
+      "official_url": "https://adass.org/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "bioinformatics",
+      "name": "Bioinformatics",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Bioinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Bioinformatics"
+      ],
+      "crossref_names": [
+        "Bioinformatics"
+      ],
+      "official_url": "https://academic.oup.com/bioinformatics",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "bib",
+      "name": "Briefings in Bioinformatics",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Bioinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Briefings in Bioinformatics"
+      ],
+      "crossref_names": [
+        "Briefings in Bioinformatics"
+      ],
+      "official_url": "https://academic.oup.com/bib",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "nar",
+      "name": "Nucleic Acids Research",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Bioinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Nucleic Acids Research"
+      ],
+      "crossref_names": [
+        "Nucleic Acids Research"
+      ],
+      "official_url": "https://academic.oup.com/nar",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "genome_biology",
+      "name": "Genome Biology",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Bioinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Genome Biology"
+      ],
+      "crossref_names": [
+        "Genome Biology"
+      ],
+      "official_url": "https://genomebiology.biomedcentral.com/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "plos_cb",
+      "name": "PLOS Computational Biology",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Bioinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "PLOS Computational Biology",
+        "PLoS Computational Biology"
+      ],
+      "crossref_names": [
+        "PLOS Computational Biology",
+        "PLoS Computational Biology"
+      ],
+      "official_url": "https://journals.plos.org/ploscompbiol/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "nature_methods",
+      "name": "Nature Methods",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Bioinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Nature Methods"
+      ],
+      "crossref_names": [
+        "Nature Methods"
+      ],
+      "official_url": "https://www.nature.com/nmeth/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "nature_biotech",
+      "name": "Nature Biotechnology",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Bioinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Nature Biotechnology"
+      ],
+      "crossref_names": [
+        "Nature Biotechnology"
+      ],
+      "official_url": "https://www.nature.com/nbt/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "tpami",
+      "name": "IEEE T-PAMI",
+      "type": "journal",
+      "tier": "tier1",
+      "bucket": "Cross-domain",
+      "search_group": "ai_journal",
+      "aliases": [
+        "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+      ],
+      "crossref_names": [
+        "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+      ],
+      "official_url": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=34",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "jmlr",
+      "name": "JMLR",
+      "type": "journal",
+      "tier": "tier1",
+      "bucket": "Cross-domain",
+      "search_group": "ai_journal",
+      "aliases": [
+        "Journal of Machine Learning Research",
+        "JMLR"
+      ],
+      "crossref_names": [
+        "Journal of Machine Learning Research",
+        "JMLR"
+      ],
+      "official_url": "https://www.jmlr.org/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "nature_mi",
+      "name": "Nature Machine Intelligence",
+      "type": "journal",
+      "tier": "tier1",
+      "bucket": "Cross-domain",
+      "search_group": "ai_journal",
+      "aliases": [
+        "Nature Machine Intelligence"
+      ],
+      "crossref_names": [
+        "Nature Machine Intelligence"
+      ],
+      "official_url": "https://www.nature.com/natmachintell/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "nature_compsci",
+      "name": "Nature Computational Science",
+      "type": "journal",
+      "tier": "tier1",
+      "bucket": "Cross-domain",
+      "search_group": "ai_journal",
+      "aliases": [
+        "Nature Computational Science"
+      ],
+      "crossref_names": [
+        "Nature Computational Science"
+      ],
+      "official_url": "https://www.nature.com/natcomputsci/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "tkde",
+      "name": "IEEE TKDE",
+      "type": "journal",
+      "tier": "tier1",
+      "bucket": "Cross-domain",
+      "search_group": "ai_journal",
+      "aliases": [
+        "IEEE Transactions on Knowledge and Data Engineering"
+      ],
+      "crossref_names": [
+        "IEEE Transactions on Knowledge and Data Engineering"
+      ],
+      "official_url": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=69",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "tkdd",
+      "name": "ACM TKDD",
+      "type": "journal",
+      "tier": "tier1",
+      "bucket": "Cross-domain",
+      "search_group": "ai_journal",
+      "aliases": [
+        "ACM Transactions on Knowledge Discovery from Data"
+      ],
+      "crossref_names": [
+        "ACM Transactions on Knowledge Discovery from Data"
+      ],
+      "official_url": "https://dl.acm.org/journal/tkdd",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "nature",
+      "name": "Nature",
+      "type": "journal",
+      "tier": "tier2",
+      "bucket": "Cross-domain",
+      "search_group": "multidisciplinary",
+      "aliases": [
+        "Nature"
+      ],
+      "crossref_names": [
+        "Nature"
+      ],
+      "official_url": "https://www.nature.com/nature/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "science",
+      "name": "Science",
+      "type": "journal",
+      "tier": "tier2",
+      "bucket": "Cross-domain",
+      "search_group": "multidisciplinary",
+      "aliases": [
+        "Science"
+      ],
+      "crossref_names": [
+        "Science"
+      ],
+      "official_url": "https://www.science.org/journal/science",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "pnas",
+      "name": "PNAS",
+      "type": "journal",
+      "tier": "tier2",
+      "bucket": "Cross-domain",
+      "search_group": "multidisciplinary",
+      "aliases": [
+        "Proceedings of the National Academy of Sciences",
+        "Proceedings of the National Academy of Sciences of the United States of America",
+        "PNAS"
+      ],
+      "crossref_names": [
+        "Proceedings of the National Academy of Sciences",
+        "Proceedings of the National Academy of Sciences of the United States of America",
+        "PNAS"
+      ],
+      "official_url": "https://www.pnas.org/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "nature_communications",
+      "name": "Nature Communications",
+      "type": "journal",
+      "tier": "tier2",
+      "bucket": "Cross-domain",
+      "search_group": "multidisciplinary",
+      "aliases": [
+        "Nature Communications"
+      ],
+      "crossref_names": [
+        "Nature Communications"
+      ],
+      "official_url": "https://www.nature.com/ncomms/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "science_advances",
+      "name": "Science Advances",
+      "type": "journal",
+      "tier": "tier2",
+      "bucket": "Cross-domain",
+      "search_group": "multidisciplinary",
+      "aliases": [
+        "Science Advances"
+      ],
+      "crossref_names": [
+        "Science Advances"
+      ],
+      "official_url": "https://www.science.org/journal/sciadv",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "jcim",
+      "name": "Journal of Chemical Information and Modeling",
+      "type": "journal",
+      "tier": "tier1",
+      "bucket": "Bioinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Journal of Chemical Information and Modeling"
+      ],
+      "crossref_names": [
+        "Journal of Chemical Information and Modeling"
+      ],
+      "official_url": "https://pubs.acs.org/journal/jcisd8",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "cell_systems",
+      "name": "Cell Systems",
+      "type": "journal",
+      "tier": "tier1",
+      "bucket": "Bioinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Cell Systems"
+      ],
+      "crossref_names": [
+        "Cell Systems"
+      ],
+      "official_url": "https://www.cell.com/cell-systems/home",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "nature_genetics",
+      "name": "Nature Genetics",
+      "type": "journal",
+      "tier": "tier1",
+      "bucket": "Bioinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Nature Genetics"
+      ],
+      "crossref_names": [
+        "Nature Genetics"
+      ],
+      "official_url": "https://www.nature.com/ng/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "cell_genomics",
+      "name": "Cell Genomics",
+      "type": "journal",
+      "tier": "tier1",
+      "bucket": "Bioinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Cell Genomics"
+      ],
+      "crossref_names": [
+        "Cell Genomics"
+      ],
+      "official_url": "https://www.cell.com/cell-genomics/home",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "nature_bme",
+      "name": "Nature Biomedical Engineering",
+      "type": "journal",
+      "tier": "tier2",
+      "bucket": "Bioinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Nature Biomedical Engineering"
+      ],
+      "crossref_names": [
+        "Nature Biomedical Engineering"
+      ],
+      "official_url": "https://www.nature.com/natbiomedeng/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "cell_reports_methods",
+      "name": "Cell Reports Methods",
+      "type": "journal",
+      "tier": "tier2",
+      "bucket": "Bioinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Cell Reports Methods"
+      ],
+      "crossref_names": [
+        "Cell Reports Methods"
+      ],
+      "official_url": "https://www.cell.com/cell-reports-methods/home",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "tgrs",
+      "name": "IEEE TGRS",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "IEEE Transactions on Geoscience and Remote Sensing"
+      ],
+      "crossref_names": [
+        "IEEE Transactions on Geoscience and Remote Sensing"
+      ],
+      "official_url": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=36",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "rse",
+      "name": "Remote Sensing of Environment",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Remote Sensing of Environment"
+      ],
+      "crossref_names": [
+        "Remote Sensing of Environment"
+      ],
+      "official_url": "https://www.sciencedirect.com/journal/remote-sensing-of-environment",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "isprs_jprs",
+      "name": "ISPRS JPRS",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "ISPRS Journal of Photogrammetry and Remote Sensing"
+      ],
+      "crossref_names": [
+        "ISPRS Journal of Photogrammetry and Remote Sensing"
+      ],
+      "official_url": "https://www.sciencedirect.com/journal/isprs-journal-of-photogrammetry-and-remote-sensing",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "ijaeog",
+      "name": "IJAEOG",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "International Journal of Applied Earth Observation and Geoinformation"
+      ],
+      "crossref_names": [
+        "International Journal of Applied Earth Observation and Geoinformation"
+      ],
+      "official_url": "https://www.sciencedirect.com/journal/international-journal-of-applied-earth-observation-and-geoinformation",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "essd",
+      "name": "Earth System Science Data",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Earth System Science Data"
+      ],
+      "crossref_names": [
+        "Earth System Science Data"
+      ],
+      "official_url": "https://essd.copernicus.org/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "ecoinf",
+      "name": "Ecological Informatics",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Ecological Informatics"
+      ],
+      "crossref_names": [
+        "Ecological Informatics"
+      ],
+      "official_url": "https://www.sciencedirect.com/journal/ecological-informatics",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "mee",
+      "name": "Methods in Ecology and Evolution",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Methods in Ecology and Evolution"
+      ],
+      "crossref_names": [
+        "Methods in Ecology and Evolution"
+      ],
+      "official_url": "https://besjournals.onlinelibrary.wiley.com/journal/2041210x",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "gcb",
+      "name": "Global Change Biology",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Global Change Biology"
+      ],
+      "crossref_names": [
+        "Global Change Biology"
+      ],
+      "official_url": "https://onlinelibrary.wiley.com/journal/13652486",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "jstars",
+      "name": "IEEE JSTARS",
+      "type": "journal",
+      "tier": "tier1",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing"
+      ],
+      "crossref_names": [
+        "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing"
+      ],
+      "official_url": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=4609443",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "grsl",
+      "name": "IEEE GRSL",
+      "type": "journal",
+      "tier": "tier1",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "IEEE Geoscience and Remote Sensing Letters"
+      ],
+      "crossref_names": [
+        "IEEE Geoscience and Remote Sensing Letters"
+      ],
+      "official_url": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=8859",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "ijgis",
+      "name": "International Journal of Geographical Information Science",
+      "type": "journal",
+      "tier": "tier1",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "International Journal of Geographical Information Science"
+      ],
+      "crossref_names": [
+        "International Journal of Geographical Information Science"
+      ],
+      "official_url": "https://www.tandfonline.com/journals/tgis20",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "james",
+      "name": "Journal of Advances in Modeling Earth Systems",
+      "type": "journal",
+      "tier": "tier1",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Journal of Advances in Modeling Earth Systems"
+      ],
+      "crossref_names": [
+        "Journal of Advances in Modeling Earth Systems"
+      ],
+      "official_url": "https://agupubs.onlinelibrary.wiley.com/journal/19422466",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "nature_geoscience",
+      "name": "Nature Geoscience",
+      "type": "journal",
+      "tier": "tier2",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Nature Geoscience"
+      ],
+      "crossref_names": [
+        "Nature Geoscience"
+      ],
+      "official_url": "https://www.nature.com/ngeo/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "nature_climate_change",
+      "name": "Nature Climate Change",
+      "type": "journal",
+      "tier": "tier2",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Nature Climate Change"
+      ],
+      "crossref_names": [
+        "Nature Climate Change"
+      ],
+      "official_url": "https://www.nature.com/nclimate/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "eds",
+      "name": "Environmental Data Science",
+      "type": "journal",
+      "tier": "tier2",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Environmental Data Science"
+      ],
+      "crossref_names": [
+        "Environmental Data Science"
+      ],
+      "official_url": "https://www.cambridge.org/core/journals/environmental-data-science",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "aies",
+      "name": "Artificial Intelligence for the Earth Systems",
+      "type": "journal",
+      "tier": "tier2",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Artificial Intelligence for the Earth Systems"
+      ],
+      "crossref_names": [
+        "Artificial Intelligence for the Earth Systems"
+      ],
+      "official_url": "https://journals.ametsoc.org/view/journals/aies/aies-overview.xml",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "giscience_rs",
+      "name": "GIScience & Remote Sensing",
+      "type": "journal",
+      "tier": "tier2",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "GIScience & Remote Sensing",
+        "GIScience and Remote Sensing"
+      ],
+      "crossref_names": [
+        "GIScience & Remote Sensing",
+        "GIScience and Remote Sensing"
+      ],
+      "official_url": "https://www.tandfonline.com/journals/tgrs20",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "ceus",
+      "name": "Computers, Environment and Urban Systems",
+      "type": "journal",
+      "tier": "tier2",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Computers, Environment and Urban Systems"
+      ],
+      "crossref_names": [
+        "Computers, Environment and Urban Systems"
+      ],
+      "official_url": "https://www.sciencedirect.com/journal/computers-environment-and-urban-systems",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "rsase",
+      "name": "Remote Sensing Applications: Society and Environment",
+      "type": "journal",
+      "tier": "tier2",
+      "bucket": "Geospatial & Earth Informatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Remote Sensing Applications: Society and Environment"
+      ],
+      "crossref_names": [
+        "Remote Sensing Applications: Society and Environment"
+      ],
+      "official_url": "https://www.sciencedirect.com/journal/remote-sensing-applications-society-and-environment",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "mnras",
+      "name": "MNRAS",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Astroinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Monthly Notices of the Royal Astronomical Society"
+      ],
+      "crossref_names": [
+        "Monthly Notices of the Royal Astronomical Society"
+      ],
+      "official_url": "https://academic.oup.com/mnras",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "aj",
+      "name": "AJ",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Astroinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "The Astronomical Journal",
+        "Astronomical Journal"
+      ],
+      "crossref_names": [
+        "The Astronomical Journal",
+        "Astronomical Journal"
+      ],
+      "official_url": "https://iopscience.iop.org/journal/1538-3881",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "apj",
+      "name": "ApJ",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Astroinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "The Astrophysical Journal",
+        "Astrophysical Journal"
+      ],
+      "crossref_names": [
+        "The Astrophysical Journal",
+        "Astrophysical Journal"
+      ],
+      "official_url": "https://iopscience.iop.org/journal/0004-637X",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "apjl",
+      "name": "ApJL",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Astroinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "The Astrophysical Journal Letters",
+        "Astrophysical Journal Letters"
+      ],
+      "crossref_names": [
+        "The Astrophysical Journal Letters",
+        "Astrophysical Journal Letters"
+      ],
+      "official_url": "https://iopscience.iop.org/journal/2041-8205",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "apjs",
+      "name": "ApJS",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Astroinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "The Astrophysical Journal Supplement Series",
+        "Astrophysical Journal Supplement Series"
+      ],
+      "crossref_names": [
+        "The Astrophysical Journal Supplement Series",
+        "Astrophysical Journal Supplement Series"
+      ],
+      "official_url": "https://iopscience.iop.org/journal/0067-0049",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "aa",
+      "name": "A&A",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Astroinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Astronomy & Astrophysics",
+        "Astronomy and Astrophysics"
+      ],
+      "crossref_names": [
+        "Astronomy & Astrophysics",
+        "Astronomy and Astrophysics"
+      ],
+      "official_url": "https://www.aanda.org/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "pasp",
+      "name": "PASP",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Astroinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Publications of the Astronomical Society of the Pacific"
+      ],
+      "crossref_names": [
+        "Publications of the Astronomical Society of the Pacific"
+      ],
+      "official_url": "https://iopscience.iop.org/journal/1538-3873",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "astronomy_computing",
+      "name": "Astronomy and Computing",
+      "type": "journal",
+      "tier": "core",
+      "bucket": "Astroinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Astronomy and Computing"
+      ],
+      "crossref_names": [
+        "Astronomy and Computing"
+      ],
+      "official_url": "https://www.sciencedirect.com/journal/astronomy-and-computing",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "nature_astronomy",
+      "name": "Nature Astronomy",
+      "type": "journal",
+      "tier": "tier1",
+      "bucket": "Astroinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Nature Astronomy"
+      ],
+      "crossref_names": [
+        "Nature Astronomy"
+      ],
+      "official_url": "https://www.nature.com/natastron/",
+      "years_policy": {
+        "type": "all"
+      }
+    },
+    {
+      "key": "pasa",
+      "name": "Publications of the Astronomical Society of Australia",
+      "type": "journal",
+      "tier": "tier1",
+      "bucket": "Astroinformatics",
+      "search_group": "field_venue",
+      "aliases": [
+        "Publications of the Astronomical Society of Australia"
+      ],
+      "crossref_names": [
+        "Publications of the Astronomical Society of Australia"
+      ],
+      "official_url": "https://www.cambridge.org/core/journals/publications-of-the-astronomical-society-of-australia",
+      "years_policy": {
+        "type": "all"
+      }
+    }
+  ]
+}

@@ -2,14 +2,33 @@
 
 SkillForge 是个人 agent 技能库的长期维护源，用来集中维护可复用的 Codex 和 Claude Code skills。仓库内容通过 cc-switch 从 GitHub 拉取，再安装或同步到本机 agent 的技能根目录。
 
-## 当前技能
+## 当前技能列表
 
-- `galaxypedia-*`：从 Galaxypedia 原 skills 深度迁移而来的 Obsidian wiki 工作流，覆盖摄入、查询、Notion 文献阅读笔记、lint、Defuddle、Zotero、MinerU raw 导入、JSON Canvas 和项目维护规则。
-- `galaxypedia-suite`：旧调用兼容入口，只负责路由到独立 `galaxypedia-*` 技能。
-- `skillforge-sync-installed-skills`：把 cc-switch 已安装但本仓库尚未维护的技能纳入 SkillForge。
-- `skillforge-repair-cc-switch-skill`：修复通过 cc-switch 单独安装 GitHub skill 后缺失上游共享目录或相对依赖的问题。
-- `nature-*`：源自 `Yuan1z0825/nature-skills` 的科学写作、绘图和评审技能。本仓库维护已安装子集，并保留上游共享支持目录 `skills/_shared/`。
-- 其他技能：从已安装技能目录归档进本仓库的通用或第三方技能，例如 `init-project`、`mineru-pdf-parse`、`pdf-render-contact-sheet`。
+本仓库当前维护 21 个独立 skill。`skills/_shared/` 是 `nature-*` 技能使用的共享支持目录，不作为独立 skill 触发。
+
+| Skill | 用途 |
+| --- | --- |
+| `ai-science-literature-survey` | 面向 Bioinformatics、Geospatial & Earth Informatics、Astroinformatics 的 AI for Science 文献严格检索、题录级采集、目标会议/期刊限定、领域分类、去重、校验和中文报告生成。 |
+| `galaxypedia-defuddle` | 清洗网页文章、博客、文档页 URL，并保存为 Galaxypedia raw/articles Markdown 来源。 |
+| `galaxypedia-json-canvas` | 创建和维护 Obsidian JSON Canvas 文件，用于白板、概念图、架构图、工作流图和 topic map。 |
+| `galaxypedia-karpathy-guidelines` | 维护 Galaxypedia Markdown、脚本或 agent 指令时遵循的简单、直接、目标驱动改动规则。 |
+| `galaxypedia-mineru-import` | 使用 MinerU 解析 PDF、Office 文档、图片或远程文档 URL，并导入 Galaxypedia raw 来源目录。 |
+| `galaxypedia-notion-literature-notes` | 将 Galaxypedia/Obsidian 中的论文、summary、concept/entity 页面整理为 Notion 文献阅读笔记。 |
+| `galaxypedia-suite` | Galaxypedia 旧调用兼容入口，路由到独立 `galaxypedia-*` 技能。 |
+| `galaxypedia-wiki` | Galaxypedia wiki 总入口，路由摄入、查询、检查、MinerU 预处理、模板/frontmatter 规范和知识库维护任务。 |
+| `galaxypedia-wiki-ingest` | 摄入 Galaxypedia 来源，创建或更新 summary、entity、concept、index 和 log。 |
+| `galaxypedia-wiki-lint` | 检查 Galaxypedia wiki 健康状态，包括未索引页面、死链、孤儿页、缺失交叉引用和一致性问题。 |
+| `galaxypedia-wiki-query` | 按 quick、standard、deep 模式查询 Galaxypedia wiki，综合回答并可回存高价值答案。 |
+| `galaxypedia-zotero-ingest` | 从本地 Zotero 读取论文 metadata、collection 分类和 PDF 附件路径，并交给 MinerU/Galaxypedia 摄入。 |
+| `init-project` | 初始化当前项目目录，创建最小智能体协作文件，并生成中文后续使用说明。 |
+| `letpub-skills` | LetPub 期刊数据爬取，支持查询期刊详情、分析评论和推荐期刊。 |
+| `mineru-pdf-parse` | 使用 MinerU 解析 PDF、本地或远程 PDF 转 Markdown，提取论文、图片、公式或表格。 |
+| `nature-figure` | 面向 Nature 或高水平期刊的投稿级科学绘图工作流，支持 Python 或 R。 |
+| `nature-reviewer` | 以 Nature 风格审稿人视角进行投稿前评估，输出 3 份 reviewer reports 和综合意见。 |
+| `nature-writing` | 起草、重构或规划 Nature 风格论文段落和章节，包括摘要、引言、方法、实验、讨论等。 |
+| `pdf-render-contact-sheet` | 将 PDF 渲染为逐页 PNG 或 contact sheet，用于检查版式、空白页、截断、页面顺序和图表文字问题。 |
+| `skillforge-repair-cc-switch-skill` | 修复 cc-switch 单独安装 GitHub skill 后缺失上游共享目录、相对依赖或支持文件的问题。 |
+| `skillforge-sync-installed-skills` | 同步已安装技能、纳入新 skill、检查目录差异并生成 `skill-inventory.json`。 |
 
 ## 目录结构
 

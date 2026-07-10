@@ -5,6 +5,7 @@
     "cc_switch_skills_dir": "$HOME/.cc-switch/skills"
   },
   "skills": [
+    {"name": "ai-science-literature-survey", "content_hash": "77e388ec78da64de83c994b466d9b478a11f3221d46a6e7171c3640edf6e6054"},
     {"name": "galaxypedia-defuddle", "content_hash": "edf3fb63965cee08ffe71a125434afb14358be8918d5535ea49962f1df13e119"},
     {"name": "galaxypedia-json-canvas", "content_hash": "ba61bf69d5ea1b64c49a5268ef47687c5e2f8824380bf7b4ff2f264e45713c7e"},
     {"name": "galaxypedia-karpathy-guidelines", "content_hash": "797af7958cd64e74abc7608f065658fdb0a5282654d52bdebbd75e90fb1781fd"},

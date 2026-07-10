@@ -1,0 +1,6 @@
+interface:
+  display_name: "AI Science Literature Survey"
+  short_description: "Strict AI-for-science literature survey"
+  default_prompt: "Use $ai-science-literature-survey to run a strict target-venue literature survey with configurable years and Chinese outputs."
+policy:
+  allow_implicit_invocation: true
