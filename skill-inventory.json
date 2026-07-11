@@ -11,7 +11,6 @@
     {"name": "galaxypedia-karpathy-guidelines", "content_hash": "797af7958cd64e74abc7608f065658fdb0a5282654d52bdebbd75e90fb1781fd"},
     {"name": "galaxypedia-mineru-import", "content_hash": "e1bda454df0f2eaecdfa1600b1d726c415f1fde917973c27f197548298e9bc1b"},
     {"name": "galaxypedia-notion-literature-notes", "content_hash": "3b8082796bf883fb84ad48423be3e090fbaf3a54017fd9afad1776bdc538b898"},
-    {"name": "galaxypedia-suite", "content_hash": "41e9f20cb2a6fbc5b283725077fa91bf05a0562e035fc89e23a3eddad25081b0"},
     {"name": "galaxypedia-wiki", "content_hash": "12f5629f03e67248247046d2222a37d92c154c25990dd326bb267912c5aa7307"},
     {"name": "galaxypedia-wiki-ingest", "content_hash": "8ad10276c90f8c915f9c8ec33f35a8ded659e39c32b59f11faf0d3ef85ba93e4"},
     {"name": "galaxypedia-wiki-lint", "content_hash": "04fb99b55f370f812b799417d3f8050b1f071e6c147232a81ac451fe1239a608"},
@@ -24,7 +23,7 @@
     {"name": "nature-writing", "content_hash": "ff838b2e0868d3d8150433c1073d5907f87df5ed73ac33f6b856bca361f3d605"},
     {"name": "pdf-layout-inspection", "content_hash": "b4cc71b6c02930a5290ffb5ec4b2903059a26538d2c9e74cdbb2b58feae8e28e"},
     {"name": "skillforge-repair-cc-switch-skill", "content_hash": "392d431b6d9309537d1aab9cb19f7ec556fe879a5850de51bb652cbe51e4d6f0"},
-    {"name": "skillforge-sync-installed-skills", "content_hash": "36f3d4502e7f5ff9d3c87f2baa1330a5ff071c0c3010dd4fd1fa188ad9af4ef0"},
+    {"name": "skillforge-sync-installed-skills", "content_hash": "a41645c4b35491b20efc93d20d53583fb29427dfb204f3fe52457ae1bbe5af9f"},
     {"name": "zotero-cloud-library", "content_hash": "4097526fee9a3f1a8a094f21fe3808da0119c1375ae7770ea6b4a9f3bd0b166e"},
     {"name": "zotero-local-pdf-attach", "content_hash": "82257f2c1488facfc49dc96ec9bfbfedaf04874528e460c299a7c6388dd73132"}
   ]

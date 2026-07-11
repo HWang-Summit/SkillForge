@@ -63,7 +63,6 @@ required_galaxypedia=(
   galaxypedia-mineru-import
   galaxypedia-json-canvas
   galaxypedia-karpathy-guidelines
-  galaxypedia-suite
 )
 
 for skill in "${required_galaxypedia[@]}"; do
@@ -73,10 +72,6 @@ done
 for ref in frontmatter templates obsidian-markdown; do
   [[ -f "$ROOT/skills/galaxypedia-wiki/references/$ref.md" ]] || err "missing Galaxypedia shared reference: $ref"
 done
-
-if [[ -d "$ROOT/skills/galaxypedia-suite/references" ]]; then
-  err "galaxypedia-suite should not carry workflow references; use independent skills"
-fi
 
 [[ -f "$ROOT/skills/skillforge-sync-installed-skills/SKILL.md" ]] || err "missing skillforge-sync-installed-skills"
 [[ -x "$ROOT/scripts/sync-installed-skills.sh" ]] || err "sync-installed-skills.sh is missing or not executable"

@@ -12,7 +12,6 @@ cc_switch_skills_dir="${CC_SWITCH_SKILLS_DIR:-}"
 galaxypedia_skills_dir="${GALAXYPEDIA_SKILLS_DIR:-}"
 skip_names=(
   _shared
-  galaxypedia-suite
   skillforge-sync-installed-skills
 )
 
