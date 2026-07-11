@@ -8,7 +8,7 @@ description: >-
   report. Return 3 reviewer reports plus a cross-review synthesis, grounded only in the
   local Nature reviewer source basis and file-derived manuscript evidence. For PDF
   manuscripts, parse the PDF with mineru-pdf-parse and inspect PDF page thumbnails with
-  pdf-render-contact-sheet before reviewing. For LaTeX manuscripts, review the LaTeX
+  pdf-layout-inspection before reviewing. For LaTeX manuscripts, review the LaTeX
   source plus the corresponding PDF thumbnails.
   Also trigger on general pre-submission review requests during academic writing even without the
   word "Nature", such as getting a mock peer review for any journal, critiquing a draft as a
@@ -54,8 +54,8 @@ If the user supplies only pasted text, abstract text, author notes, or conversat
 
 1. Identify whether the job is a reviewer-style assessment rather than rebuttal drafting.
 2. Build the file evidence package.
-   - For a PDF manuscript, invoke `mineru-pdf-parse` to create Markdown and extracted resources, then invoke `pdf-render-contact-sheet` to create page PNGs and a contact sheet.
-   - For a LaTeX manuscript, read the source package and inspect the corresponding PDF through `pdf-render-contact-sheet`; if no corresponding PDF exists and the build entrypoint cannot be determined, ask for the PDF before reviewing.
+   - For a PDF manuscript, invoke `mineru-pdf-parse` to create Markdown and extracted resources, then invoke `pdf-layout-inspection` to create page PNGs and a contact sheet.
+   - For a LaTeX manuscript, read the source package and inspect the corresponding PDF through `pdf-layout-inspection`; if no corresponding PDF exists and the build entrypoint cannot be determined, ask for the PDF before reviewing.
 3. Record the evidence boundary: input type, files used, parse output, visual review output, missing files, unreadable pages, parsing failures, or layout anomalies.
 4. Extract a shared manuscript fact base from accepted files only: main claim, visible evidence, claimed significance, likely readership, and visible limitations.
 5. Check readiness and label missing evidence or missing sections instead of inventing them.

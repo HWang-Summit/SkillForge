@@ -81,7 +81,7 @@
   - identify likely interested readership
   - identify technical failings
   - avoid drafting editorial decision language as the default output
-- For PDF manuscripts, parse with `mineru-pdf-parse` and inspect rendered pages with `pdf-render-contact-sheet` before writing the review whenever those tools are available.
+- For PDF manuscripts, parse with `mineru-pdf-parse` and inspect rendered pages with `pdf-layout-inspection` before writing the review whenever those tools are available.
 - For LaTeX manuscripts, inspect the source package and the corresponding PDF contact sheet before writing the review.
 - If the manuscript seems technically valid but not clearly broad-interest, the reports may say so; the source explicitly separates technical validity from editorial selection.
 - If the manuscript is broad-interest but evidence is incomplete, the reports must still foreground technical failings because the source treats them as essential before the authors' case is established.

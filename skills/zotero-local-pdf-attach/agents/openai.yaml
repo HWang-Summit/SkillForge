@@ -1,0 +1,4 @@
+interface:
+  display_name: "Zotero 本地 PDF 附加"
+  short_description: "分批将 PDF 作为本地副本附加到 Zotero 条目"
+  default_prompt: "使用 $zotero-local-pdf-attach 将下载的 PDF 分批、可恢复地附加到本地 Zotero 条目。"

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Zotero Web API"
-  short_description: "Write Zotero items and collections via Web API"
-  default_prompt: "Use $zotero-web-api to add paper metadata to a Zotero collection via the Web API."

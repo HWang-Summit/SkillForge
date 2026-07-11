@@ -1,0 +1,4 @@
+interface:
+  display_name: "Zotero Cloud Library"
+  short_description: "Manage Zotero cloud items and collections"
+  default_prompt: "Use $zotero-cloud-library to add paper metadata to a Zotero cloud collection."

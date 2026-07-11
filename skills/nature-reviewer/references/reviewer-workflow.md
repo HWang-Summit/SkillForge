@@ -8,9 +8,9 @@
    - Treat user chat content only as task routing, file-location, or parameter-selection context.
 2. Build the file evidence package.
    - For PDF input, run `mineru-pdf-parse` to produce Markdown and available image resources.
-   - For PDF input, run `pdf-render-contact-sheet` to produce page PNGs and a contact sheet.
+   - For PDF input, run `pdf-layout-inspection` to produce page PNGs and a contact sheet.
    - For LaTeX input, inspect the main `.tex`, directly referenced `.tex` files, bibliography files, and referenced figure/table assets.
-   - For LaTeX input, inspect the corresponding PDF through `pdf-render-contact-sheet`.
+   - For LaTeX input, inspect the corresponding PDF through `pdf-layout-inspection`.
 3. Record provenance and boundaries.
    - List files used as evidence, parsed text output, visual output, missing files, unreadable pages, parsing failures, or layout anomalies.
 4. Build a manuscript fact base from accepted files only.
@@ -43,7 +43,7 @@
 
 1. Confirm the PDF path.
 2. Use `mineru-pdf-parse` in the manuscript project root to produce Markdown under `minerU/outputs/`.
-3. Use `pdf-render-contact-sheet` to produce `rendered_pdf_pages/page-*.png` and `rendered_pdf_pages/contact.png` or an equivalent output directory.
+3. Use `pdf-layout-inspection` to produce `rendered_pdf_pages/page-*.png` and `rendered_pdf_pages/contact.png` or an equivalent output directory.
 4. Inspect the MinerU Markdown for claims, evidence, figures, methods, and limitations.
 5. Inspect the contact sheet for page order, missing pages, blank pages, truncated content, figure/table visibility, and layout anomalies.
 6. Open selected single-page PNGs only when the contact sheet suggests an issue or a figure/page needs closer visual confirmation.
@@ -53,7 +53,7 @@
 1. Identify the main `.tex` file from the user-supplied path or local project conventions.
 2. Read the main `.tex`, directly referenced `\input` / `\include` files, bibliography files, and referenced figure/table assets when available.
 3. Locate the corresponding PDF. Prefer an existing manuscript PDF in the LaTeX project output or build directory.
-4. Run `pdf-render-contact-sheet` on the corresponding PDF and inspect the contact sheet before writing the review.
+4. Run `pdf-layout-inspection` on the corresponding PDF and inspect the contact sheet before writing the review.
 5. If source and PDF appear inconsistent, mark this in the assessment boundary and ground claims in the explicit file evidence that was actually inspected.
 
 ## Fact-base extraction checklist

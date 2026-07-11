@@ -1,9 +1,9 @@
 ---
-name: pdf-render-contact-sheet
+name: pdf-layout-inspection
 description: 当用户需要把任意 PDF 渲染为逐页 PNG、生成 contact sheet 总览图、检查 PDF 页面视觉布局、空白页、截断、页面顺序、图表或文字过小、导出/排版异常时使用。适用于报告、讲义、论文、文档导出版等 PDF；不用于 OCR、正文抽取、公式/表格解析或 PDF 转 Markdown。
 ---
 
-# PDF Render Contact Sheet
+# PDF Layout Inspection
 
 这个 skill 用于对 PDF 做本地视觉 QA：把 PDF 渲染为逐页图片，并生成一张带页码标签的 contact sheet，方便快速检查页面渲染和版面问题。
 
@@ -46,7 +46,7 @@ description: 当用户需要把任意 PDF 渲染为逐页 PNG、生成 contact s
 从目标项目根目录运行：
 
 ```bash
-"$HOME/.codex/skills/pdf-render-contact-sheet/scripts/run_pdf_contact_sheet.sh" \
+"$HOME/.codex/skills/pdf-layout-inspection/scripts/run_pdf_contact_sheet.sh" \
   --pdf paper/build/main.pdf \
   --out rendered_pdf_pages \
   --dpi 150 \
@@ -59,7 +59,7 @@ description: 当用户需要把任意 PDF 渲染为逐页 PNG、生成 contact s
 从目标项目根目录运行：
 
 ```bash
-"$HOME/.claude/skills/pdf-render-contact-sheet/scripts/run_pdf_contact_sheet.sh" \
+"$HOME/.claude/skills/pdf-layout-inspection/scripts/run_pdf_contact_sheet.sh" \
   --pdf paper/build/main.pdf \
   --out rendered_pdf_pages \
   --dpi 150 \
