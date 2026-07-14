@@ -131,7 +131,7 @@ Obsidian Canvas 预设色：
 用于展示：
 
 - `galaxypedia-wiki` 总入口。
-- `galaxypedia-wiki-ingest` 如何连接 `galaxypedia-mineru-import`、`galaxypedia-defuddle`、`galaxypedia-zotero-ingest`。
+- `galaxypedia-wiki-ingest` 如何连接 `galaxypedia-mineru-import`、`galaxypedia-defuddle`、`zotero-galaxypedia-bridge`；旧 `galaxypedia-zotero-ingest` 仅标记为历史只读兼容入口。
 - `galaxypedia-wiki-query`、`galaxypedia-wiki-lint`、`galaxypedia-karpathy-guidelines` 的职责边界。
 - `galaxypedia-json-canvas` 作为可视化派生层能力。
 
