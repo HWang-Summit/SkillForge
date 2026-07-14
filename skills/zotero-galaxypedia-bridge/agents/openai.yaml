@@ -1,0 +1,4 @@
+interface:
+  display_name: "Zotero Galaxypedia Bridge"
+  short_description: "Stage and link Galaxypedia paper bundles"
+  default_prompt: "Use $zotero-galaxypedia-bridge to stage and safely ingest a paper PDF."

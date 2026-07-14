@@ -1,0 +1,4 @@
+interface:
+  display_name: "Zotero Development Library"
+  short_description: "Safely manage a development Zotero library"
+  default_prompt: "Use $zotero-dev-library to safely manage my development Zotero library."
