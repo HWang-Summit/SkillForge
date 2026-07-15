@@ -76,9 +76,9 @@ dist/            # 生成的兼容导出目录，不手动编辑
 
 每篇论文只有一个稳定 bundle：`raw/papers/pdf-<sha-prefix>/`，其中包含标题命名的 PDF、`paper.mineru.md` 与 `paper.mineru/` 资源。Zotero collection 的移动或改名不会移动 bundle。
 
-1. `stage-pdf`、`stage-legacy-pdf` 或 `stage-zotero-item`：创建/复用 bundle，运行或复用 MinerU，返回 metadata 与当前 collection tree；不写 Zotero，也不删除来源。
-2. Codex/Claude 根据标题、摘要、DOI、关键词和 MinerU 正文开头生成可审计的分类提案。优先已有二级 collection；低置信度或多个合理候选使用 `needs_review`，不写 collection。
-3. `commit-bundle` 校验提案后创建/复用 Zotero 条目、追加确认的 collection、建立并读回验证 relative linked attachment。新建一级/二级 collection 必须经用户明确确认。
+1. `stage-pdf`、`stage-legacy-pdf`、`stage-papers-inbox` 或 `stage-zotero-item`：复制前先登记 `pending_copy`、MinerU 前登记 `pending_parse`、成功后才返回 `pending_classification` 与当前 collection tree；不写 Zotero，也不删除来源。手动下载的论文先放入 `raw/papers/_inbox/`，按需调用 `stage-papers-inbox` 递归扫描。`pending_copy`/`pending_parse` 修复后用 `resume-stage <bundle> --apply` 显式恢复，不自动重试。外部 PDF 须在 commit 前以 `verify-metadata` 写入绑定 hash/path 的可信题录，不能把 MinerU 正文或参考文献年份直接写入 Zotero。
+2. Codex/Claude 根据标题、摘要、DOI、关键词和 MinerU 正文开头生成可审计的分类提案。批量 `_inbox` stage 时使用每篇一个的 `outputs/classification-proposals/<pdf-sha256>.json`。优先已有二级 collection；低置信度或多个合理候选使用 `needs_review`，不写 collection。对已有 Zotero 条目，Zotero 的 title、DOI、年份和 creators 是 canonical metadata，MinerU metadata 仅用于内容验证、分类和 wiki；title/DOI 矛盾会停在 `content_mismatch`。
+3. `commit-bundle` 校验提案后创建/复用 Zotero 条目、追加确认的 collection、建立并读回验证 relative linked attachment。Zotero 来源默认在验证后删除旧 linked PDF，使 `raw/papers/pdf-<hash>/` 成为唯一物理 PDF；历史保留源文件的 bundle 用 `cleanup-source` 显式收敛。新建一级/二级 collection 必须经用户明确确认。
 4. 成功后摄入 bundle 的 `paper.mineru.md` 到 wiki；不会重复执行 MinerU。
 
 Zotero Desktop 继续负责 metadata 与 collection 的官方云端同步。relative linked PDF 的文件本身以 `raw/papers` 为事实源，不作为 Zotero 云端附件上传。
