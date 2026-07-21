@@ -1,0 +1,7 @@
+interface:
+  display_name: "Zotero Removal Sync"
+  short_description: "安全清理 Zotero 回收站与 Obsidian 文献资产"
+  default_prompt: "使用 $zotero-galaxypedia-removal-sync 先检查 Zotero 回收站及其 Obsidian 清理影响。"
+
+policy:
+  allow_implicit_invocation: false

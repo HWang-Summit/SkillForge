@@ -97,3 +97,7 @@ node "$ZOTERO_GALAXYPEDIA_BRIDGE" audit --vault-root "$GALAXYPEDIA_ROOT"
 ```
 
 审计与对账为只读。不得删除 bundle、附件或来源来“修复”问题；先报告 hash、item key、attachment key 与状态。
+
+## Zotero 回收站清理
+
+用户明确要求永久清空 Zotero 回收站并同步清理 Obsidian 时，改用 `zotero-galaxypedia-removal-sync`。它调用本 Bridge 的 `plan-trash-removal` 与 `purge-trash-removal`，对整个回收站使用版本化快照，检查 summary backlink、共享页面、manifest 与 source-index；存在 blocker 时绝不清空。

@@ -41,6 +41,12 @@ node <skill-dir>/scripts/probe-dev-api.mjs
 
 支持 item/collection metadata、creators、tags、notes、relations、collection membership、trash/restore 以及已有相对链接 PDF 附件。不承诺 stored-file 上传、任意文件系统操作、PDF 标注或全文索引写入。
 
+## 回收站
+
+`zotero-cli trash list` 读取当前开发 API 的完整回收站快照。`zotero-cli trash purge --plan <file>` 是永久删除：它只接受由 Bridge 生成、包含库版本与完整 key 快照的计划，若回收站发生变化即拒绝。
+
+涉及 Galaxypedia/Obsidian 的文献时，不要直接调用 `trash purge`；改用 `zotero-galaxypedia-removal-sync`。该 skill 会先检查 summary backlink、共享知识页、manifest 和 source-index，再决定是否可永久清空。普通条目整理也不能隐式清空回收站。
+
 迁移或新建 relative linked attachment 不隐式更新父条目现有 metadata（包括 title、DOI、日期和 creators）；任何 metadata 更新都必须作为单独、经明确授权的 CLI 操作，并在写后读回验证。
 
 ## Relative linked PDF
