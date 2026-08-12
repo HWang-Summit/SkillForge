@@ -39,7 +39,7 @@ node <skill-dir>/scripts/probe-dev-api.mjs
 - CLI 已处理 Token 与乐观并发头；不要改用裸 API 写请求。
 - 每次成功写入后读回对象；遇到 version/ETag 冲突时停止、重新读取，不默认强制覆盖。
 
-支持 item/collection metadata、creators、tags、notes、relations、collection membership、trash/restore 以及已有相对链接 PDF 附件。不承诺 stored-file 上传、任意文件系统操作、PDF 标注或全文索引写入。
+支持 item/collection metadata、creators、tags、notes、relations、collection membership、trash/restore，以及已有相对链接 PDF 附件的显示标题更新。不承诺 stored-file 上传、任意文件系统操作、PDF 标注或全文索引写入。
 
 ## 回收站
 
@@ -62,3 +62,7 @@ node "$ZOTERO_PROJECT_ROOT/tools/zotero-cli.mjs" attachment link <parent-item-ke
 读回新附件验证。删除附件是高风险写入：它只会将 Zotero 附件移入回收站，不应假设会删除 linked PDF。涉及 Galaxypedia 的 PDF、MinerU、分类和 bundle 时，改用 `zotero-galaxypedia-bridge`。
 
 Bridge 管理的迁移不要用 CLI 单独删除旧 linked PDF；由 Bridge 在新 relative attachment 读回、旧 attachment 不再活跃且 hash 一致后清理。历史 bundle 需要收敛时用 Bridge `cleanup-source`。
+
+如需批量检查或修复“父条目—附件显示名—PDF 内容”不一致，必须使用
+`zotero-galaxypedia-bridge` 的 `audit-content-identity → decisions → plan → 明确 --apply`
+流程。它会绑定 PDF hash、version 与 ETag；不要以通用 CLI 绕过内容证据或计划确认。

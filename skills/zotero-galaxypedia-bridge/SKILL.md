@@ -98,6 +98,51 @@ node "$ZOTERO_GALAXYPEDIA_BRIDGE" audit --vault-root "$GALAXYPEDIA_ROOT"
 
 审计与对账为只读。不得删除 bundle、附件或来源来“修复”问题；先报告 hash、item key、attachment key 与状态。
 
+## 全库 PDF 内容身份巡检与确认修复
+
+当用户要求检查 Zotero 条目 title、附件显示 title 与 PDF 实际内容是否一致时，使用当前
+Zotero 项目的 Bridge；不得只按文件名判断，也不得直接在 Zotero UI 或 SQLite 中批量修改。
+
+先 probe 开发版 API，再生成只读报告。它扫描所有可本地读取的未删除 PDF attachment，比较
+父条目 title/DOI、附件显示 title、PDF SHA-256 和已有 Bridge/MinerU 证据：
+
+```sh
+node "$ZOTERO_GALAXYPEDIA_BRIDGE" audit-content-identity \
+  --vault-root "$GALAXYPEDIA_ROOT" \
+  --report "$GALAXYPEDIA_ROOT/outputs/zotero-content-audit.json"
+```
+
+默认不运行 MinerU；`needs_parse` 仅表示尚无内容证据。只有用户明确要求解析缺失内容时才加入
+`--parse-missing`。该模式会在 `outputs/zotero-content-audits/` 以 PDF hash 缓存 MinerU
+证据，但不创建 bundle、不改 manifest、不写 Zotero。
+
+报告后必须让用户逐项决定，再写 `version: 1`、`decisions` 数组的 JSON。每一项必须绑定
+`parent_item_key`、`attachment_key`、`pdf_sha256`，并且只能选择：
+
+- `rename_attachment_title` + `target_title`：仅当父条目 metadata 已和 PDF 内容证据一致时。
+- `update_parent_metadata` + `metadata.title`（可选 `metadata.doi`）和可追溯
+  `verification.source`（可选 HTTP(S) `source_url`）：目标值必须与 PDF 内容证据一致，
+  不能仅依据 MinerU 自动产生或采纳。
+- `acknowledge_exception` + 人工 `rationale`：记录确认保留的不一致，不写 Zotero。
+
+生成计划后，展示精确对象与变更，再取得第二次明确确认，才可执行：
+
+```sh
+node "$ZOTERO_GALAXYPEDIA_BRIDGE" plan-content-identity-repair \
+  --vault-root "$GALAXYPEDIA_ROOT" \
+  --audit "$GALAXYPEDIA_ROOT/outputs/zotero-content-audit.json" \
+  --decisions "$GALAXYPEDIA_ROOT/outputs/zotero-content-decisions.json" \
+  --identity-plan "$GALAXYPEDIA_ROOT/outputs/zotero-content-repair-plan.json"
+
+node "$ZOTERO_GALAXYPEDIA_BRIDGE" apply-content-identity-repair \
+  --vault-root "$GALAXYPEDIA_ROOT" \
+  --identity-plan "$GALAXYPEDIA_ROOT/outputs/zotero-content-repair-plan.json" --apply
+```
+
+执行会重新验证 audit hash、计划完整性、PDF hash、item/attachment version/ETag，并在 PATCH
+后读回。出现任何变化立即停止；不移动或重命名 PDF 实体，不改 collection，不创建/删除附件，
+不清空回收站。例外台账会在条目/附件版本或 PDF hash 改变时自动失效。
+
 ## Zotero 回收站清理
 
 用户明确要求永久清空 Zotero 回收站并同步清理 Obsidian 时，改用 `zotero-galaxypedia-removal-sync`。它调用本 Bridge 的 `plan-trash-removal` 与 `purge-trash-removal`，对整个回收站使用版本化快照，检查 summary backlink、共享页面、manifest 与 source-index；存在 blocker 时绝不清空。

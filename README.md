@@ -32,7 +32,7 @@ SkillForge 是个人 agent 技能库的长期维护源，用来集中维护可�
 | Skill | 用途 |
 | --- | --- |
 | `zotero-dev-library` | 通过本地开发 API 与 CLI 安全读写正在运行的 Zotero 开发版：条目、collection、metadata、标签、成员关系和既有相对链接附件。 |
-| `zotero-galaxypedia-bridge` | 论文 PDF 的 canonical bundle、MinerU、AI 分类提案与 Zotero relative linked attachment 的两阶段 Bridge。 |
+| `zotero-galaxypedia-bridge` | 论文 PDF 的 canonical bundle、MinerU、AI 分类提案与 Zotero relative linked attachment 的两阶段 Bridge；也提供全库 PDF 内容身份巡检与确认修复。 |
 | `zotero-galaxypedia-removal-sync` | 仅在明确授权后检查 Zotero 回收站、阻止死链/共享知识页风险，并同步永久清理 Obsidian 文献资产。 |
 | `zotero-local-pdf-attach` | **已弃用兼容技能**：仅维护历史 Zotero storage 托管附件；新的论文附件使用 Galaxypedia Bridge 的 relative linked attachment。 |
 | `zotero-cloud-library` | **已弃用兼容技能**：当前开发工作流不经 Zotero Web API 写入；官方云端同步由 Zotero Desktop 自己负责。 |
@@ -81,6 +81,11 @@ dist/            # 生成的兼容导出目录，不手动编辑
 2. Codex/Claude 根据标题、摘要、DOI、关键词和 MinerU 正文开头生成可审计的分类提案。批量 `_inbox` stage 时使用每篇一个的 `outputs/classification-proposals/<pdf-sha256>.json`。优先已有二级 collection；低置信度或多个合理候选使用 `needs_review`，不写 collection。对已有 Zotero 条目，Zotero 的 title、DOI、年份和 creators 是 canonical metadata，MinerU metadata 仅用于内容验证、分类和 wiki；title/DOI 矛盾会停在 `content_mismatch`。
 3. `commit-bundle` 校验提案后创建/复用 Zotero 条目、追加确认的 collection、建立并读回验证 relative linked attachment。Zotero 来源默认在验证后删除旧 linked PDF，使 `raw/papers/pdf-<hash>/` 成为唯一物理 PDF；历史保留源文件的 bundle 用 `cleanup-source` 显式收敛。新建一级/二级 collection 必须经用户明确确认。
 4. 成功后摄入 bundle 的 `paper.mineru.md` 到 wiki；不会重复执行 MinerU。
+
+历史或手工管理的 Zotero PDF 可显式运行全库内容身份巡检：比较父条目 title/DOI、附件显示标题与
+PDF/MinerU 内容证据。默认只读且不解析未知 PDF；修复必须经过 audit、逐项 decisions、版本和
+hash 绑定计划、再次确认的 `--apply`。首版只允许修正附件显示标题、以可追溯核验来源修正条目
+title/DOI，或记录确认例外；不移动 PDF、改 collection、删附件或清理回收站。
 
 删除文献时，先在 Zotero 将条目移入回收站；不会实时同步。用户明确触发 `zotero-galaxypedia-removal-sync` 后，skill 先生成回收站快照与 Obsidian 影响计划。只有不存在 summary backlink、共享知识页或 manifest/source-index 风险，才会在 Obsidian 事务和死链校验成功后永久清空整个 Zotero 回收站。普通 ingest、audit、reconcile 不会删除回收站内容。
 
