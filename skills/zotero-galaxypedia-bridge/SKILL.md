@@ -1,11 +1,11 @@
 ---
 name: zotero-galaxypedia-bridge
-description: 将论文 PDF 安全转换为 Galaxypedia canonical bundle，并通过运行中的 Zotero 开发版本地 API 建立相对链接附件。用于外部或 Zotero PDF 摄入、MinerU 解析、AI collection 分类提案、附件迁移、重试、对账和审计。
+description: 将论文 PDF 安全转换为 Galaxypedia canonical bundle，并通过运行中的官方 Zotero + Galaxypedia 插件本地 API 建立相对链接附件。用于外部或 Zotero PDF 摄入、MinerU 解析、AI collection 分类提案、附件迁移、重试、对账和审计。
 ---
 
 # Zotero–Galaxypedia Bridge
 
-只用于带 `X-Zotero-Development-API: 1` 标记的当前指定 Zotero 构建。每次 `stage-*`、`commit-bundle` 或可能读取 API 的恢复操作前，先按 `zotero-dev-library` 从可访问本机 `127.0.0.1` 的主机执行环境 probe 端点。受限 runner 的 `fetch failed`/`EPERM` 必须在主机侧重试，不能误判为 API 停机；probe 未成功或缺少标记时停止，不向未验证端点写入。设置 `ZOTERO_GALAXYPEDIA_BRIDGE` 为当前 Zotero 项目中的 `tools/zotero-galaxypedia-bridge.mjs`，并设置 `GALAXYPEDIA_ROOT`；不要把本机绝对路径写入 SkillForge。
+只用于带 `X-Zotero-Galaxypedia-API: 1` 标记且 capability probe 通过的官方 Zotero + Galaxypedia 插件。每次 `stage-*`、`commit-bundle` 或可能读取 API 的恢复操作前，先按 `zotero-dev-library` 从可访问本机 `127.0.0.1` 的主机执行环境 probe `/api/galaxypedia/v1/capabilities`。受限 runner 的 `fetch failed`/`EPERM` 必须在主机侧重试，不能误判为 API 停机；probe 未成功或缺少插件标记、capability 不完整或版本不兼容时停止，不向未验证端点写入。设置 `ZOTERO_GALAXYPEDIA_BRIDGE` 为当前 Zotero 项目中的 `tools/zotero-galaxypedia-bridge.mjs`，并设置 `GALAXYPEDIA_ROOT`；不要把本机绝对路径写入 SkillForge。
 
 写入前由主机侧 shell 从 `${SKILLFORGE_ENV_FILE:-$HOME/.skillforge/env}` 加载 `ZOTERO_LOCAL_API_TOKEN`，不要只依赖交互式 `~/.zshrc`，也绝不输出 token。
 
@@ -103,7 +103,7 @@ node "$ZOTERO_GALAXYPEDIA_BRIDGE" audit --vault-root "$GALAXYPEDIA_ROOT"
 当用户要求检查 Zotero 条目 title、附件显示 title 与 PDF 实际内容是否一致时，使用当前
 Zotero 项目的 Bridge；不得只按文件名判断，也不得直接在 Zotero UI 或 SQLite 中批量修改。
 
-先 probe 开发版 API，再生成只读报告。它扫描所有可本地读取的未删除 PDF attachment，比较
+先 probe Galaxypedia 插件 API，再生成只读报告。它扫描所有可本地读取的未删除 PDF attachment，比较
 父条目 title/DOI、附件显示 title、PDF SHA-256 和已有 Bridge/MinerU 证据：
 
 ```sh

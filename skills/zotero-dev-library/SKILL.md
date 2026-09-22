@@ -1,17 +1,17 @@
 ---
 name: zotero-dev-library
-description: 通过本地开发 API 与 CLI 安全读取和管理正在运行的 Zotero 开发版。用于条目、collection、metadata、标签、成员关系、回收站和既有相对链接附件的查询或修改；拒绝未带开发版标记的端点。
+description: 通过官方 Zotero 进程中运行的 Galaxypedia 插件本地 API 与 CLI 安全读取和管理正式库。用于条目、collection、metadata、标签、成员关系、回收站和既有相对链接附件的查询或修改；拒绝未带 Galaxypedia 插件标记的端点。
 ---
 
 # Zotero Development Library
 
-仅操作运行中的、带本地读写 API 的当前指定 Zotero 构建；它可以在调通后作为日常使用版本。绝不直接修改 `zotero.sqlite` 或 storage。
+仅操作运行中的官方 Zotero + Galaxypedia 插件；正式库由官方 Zotero 管理，旧 staging 构建不得作为日常库宿主。绝不直接修改 `zotero.sqlite` 或 storage。
 
 ## 连接与边界
 
-1. 在每次读写前，从可访问本机 `127.0.0.1` 的主机执行环境运行 `scripts/probe-dev-api.mjs`；它读取 `ZOTERO_LOCAL_API_URL`，默认本机 `/api` 端点。
+1. 在每次读写前，从可访问本机 `127.0.0.1` 的主机执行环境运行 `scripts/probe-dev-api.mjs`；它读取 `ZOTERO_LOCAL_API_URL`，默认本机 `/api/galaxypedia/v1` 端点。
 2. 若受限 runner 报 `fetch failed`、`EPERM` 或 localhost 被禁止，先在主机执行环境重试完全相同的只读 probe；这不是 API 停机的证据。主机侧 probe 仍失败时才报告当前 Zotero 构建未运行、端口未监听或 API 未启用。
-3. probe 必须确认 `X-Zotero-Development-API: 1`。缺少该标记或 probe 未成功时立即停止，不向未验证的端点写入。
+3. probe 必须确认 `/capabilities` 返回 `X-Zotero-Galaxypedia-API: 1`。缺少该标记、插件版本不兼容或 probe 未成功时立即停止，不向未验证端点写入。
 4. 写入仅从执行环境读取 `ZOTERO_LOCAL_API_TOKEN`。优先在本机私密 `${SKILLFORGE_ENV_FILE:-$HOME/.skillforge/env}` 中保存并由执行 shell 加载（权限应为仅所有者可读）；不要仅依赖交互式 `~/.zshrc`，也不打印、记录或要求用户贴 token。
 5. 设置 `ZOTERO_PROJECT_ROOT` 为当前 Zotero 项目根目录，再使用其 `tools/zotero-cli.mjs`。SkillForge 不保存该机器路径。
 
@@ -43,7 +43,7 @@ node <skill-dir>/scripts/probe-dev-api.mjs
 
 ## 回收站
 
-`zotero-cli trash list` 读取当前开发 API 的完整回收站快照。`zotero-cli trash purge --plan <file>` 是永久删除：它只接受由 Bridge 生成、包含库版本与完整 key 快照的计划，若回收站发生变化即拒绝。
+`zotero-cli trash list` 读取当前 Galaxypedia 插件 API 的完整回收站快照。`zotero-cli trash purge --plan <file>` 是永久删除：它只接受由 Bridge 生成、包含库版本与完整 key 快照的计划，若回收站发生变化即拒绝。
 
 涉及 Galaxypedia/Obsidian 的文献时，不要直接调用 `trash purge`；改用 `zotero-galaxypedia-removal-sync`。该 skill 会先检查 summary backlink、共享知识页、manifest 和 source-index，再决定是否可永久清空。普通条目整理也不能隐式清空回收站。
 
