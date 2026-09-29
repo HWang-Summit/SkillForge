@@ -7,7 +7,7 @@ description: 当用户明确要求清空 Zotero 回收站并同步删除对应 G
 
 只在用户明确要求“清理/永久删除 Zotero 回收站并同步 Obsidian”时使用。它不是后台监听器；普通 ingest、audit、reconcile、Zotero 删除或 collection 调整均不得触发。
 
-使用当前开发 API，且只操作 `X-Zotero-Development-API: 1` 标记的端点。不要写 SQLite 或 storage。令 `ZOTERO_GALAXYPEDIA_BRIDGE` 指向当前 Zotero 项目的 `tools/zotero-galaxypedia-bridge.mjs`，令 `GALAXYPEDIA_ROOT` 指向 vault；SkillForge 不保存本机绝对路径。
+使用正式 `/Applications/Zotero.app` 中运行的 Galaxypedia 插件 API，且只操作带 `X-Zotero-Galaxypedia-API: 1` 标记的端点。不要写 SQLite 或 storage。令 `ZOTERO_GALAXYPEDIA_BRIDGE` 指向当前 Zotero 项目的 `tools/zotero-galaxypedia-bridge.mjs`，令 `GALAXYPEDIA_ROOT` 指向 vault；SkillForge 不保存本机绝对路径。
 
 每次运行前从主机侧 shell 加载 `${SKILLFORGE_ENV_FILE:-$HOME/.skillforge/env}`。token 不得显示、写入计划或提交到仓库。先按 `zotero-dev-library` probe；受限 runner 的 localhost 错误应在主机侧重试。
 

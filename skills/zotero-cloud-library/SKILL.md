@@ -1,6 +1,6 @@
 ---
 name: zotero-cloud-library
-description: 已弃用的 Zotero Web API 写入兼容技能。当前开发版的论文、metadata 与 collection 读写通过 Zotero Desktop 本地开发 API 和 Zotero-Galaxypedia Bridge 完成，官方云端同步仍由 Zotero Desktop 自己负责。
+description: 已弃用的 Zotero Web API 写入兼容技能。当前正式 Zotero 的论文、metadata 与 collection 读写通过 Galaxypedia 插件本地 API 和 Zotero-Galaxypedia Bridge 完成，官方云端同步仍由 Zotero Desktop 自己负责。
 ---
 
 # Deprecated: Zotero Cloud Library

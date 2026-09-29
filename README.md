@@ -31,11 +31,11 @@ SkillForge 是个人 agent 技能库的长期维护源，用来集中维护可�
 
 | Skill | 用途 |
 | --- | --- |
-| `zotero-dev-library` | 通过本地开发 API 与 CLI 安全读写正在运行的 Zotero 开发版：条目、collection、metadata、标签、成员关系和既有相对链接附件。 |
+| `zotero-dev-library` | 通过正式 Zotero 中的 Galaxypedia 插件本地 API 与 CLI 安全读写正式库：条目、collection、metadata、标签、成员关系和既有相对链接附件。 |
 | `zotero-galaxypedia-bridge` | 论文 PDF 的 canonical bundle、MinerU、AI 分类提案与 Zotero relative linked attachment 的两阶段 Bridge；也提供全库 PDF 内容身份巡检与确认修复。 |
 | `zotero-galaxypedia-removal-sync` | 仅在明确授权后检查 Zotero 回收站、阻止死链/共享知识页风险，并同步永久清理 Obsidian 文献资产。 |
 | `zotero-local-pdf-attach` | **已弃用兼容技能**：仅维护历史 Zotero storage 托管附件；新的论文附件使用 Galaxypedia Bridge 的 relative linked attachment。 |
-| `zotero-cloud-library` | **已弃用兼容技能**：当前开发工作流不经 Zotero Web API 写入；官方云端同步由 Zotero Desktop 自己负责。 |
+| `zotero-cloud-library` | **已弃用兼容技能**：当前正式论文工作流不经 Zotero Web API 写入；官方云端同步由 Zotero Desktop 自己负责。 |
 
 ### Galaxypedia 知识库
 

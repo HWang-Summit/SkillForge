@@ -5,7 +5,7 @@ description: 已弃用的 Galaxypedia Zotero SQLite 只读查询兼容技能。�
 
 # Deprecated: Galaxypedia Zotero Ingest
 
-不要将此 skill 用于新的论文摄入、PDF 解析、Zotero 写入或 collection 分类。当前开发版的本地 API 加 Bridge 已替代其 SQLite/local-storage 工作流。
+不要将此 skill 用于新的论文摄入、PDF 解析、Zotero 写入或 collection 分类。当前正式 Zotero + Galaxypedia 插件 API 与 Bridge 已替代其 SQLite/local-storage 工作流。
 
 仅在用户明确要求核对历史 SQLite 元数据、旧的 `wiki/meta/zotero-index.md`，或排查旧摄入记录时运行只读命令：
 
