@@ -13,7 +13,10 @@ description: 已弃用的 Galaxypedia Zotero SQLite 只读查询兼容技能。�
 python scripts/zotero_ingest.py list-collections
 python scripts/zotero_ingest.py find --query "<query>"
 python scripts/zotero_ingest.py export --item-key <item-key>
-python scripts/zotero_ingest.py refresh-index
 ```
+
+旧 `refresh-index` 会写入 `wiki/meta/zotero-index.md`，并非只读命令；不作为日常入口调用。
+该页面仅保留历史辅助快照，不代表当前文库或已摄入来源。当前文库查询使用
+`zotero-dev-library`，知识查询使用 `galaxypedia-wiki-query`，不要刷新全库索引。
 
 不要修改 `zotero.sqlite`、Zotero storage、PDF 路径或 collection。新流程的入口是 `galaxypedia-wiki-ingest`：它使用 `stage-*`、AI 分类提案与 `commit-bundle`，并以 `raw/papers/pdf-<sha-prefix>/` 作为唯一 PDF bundle。

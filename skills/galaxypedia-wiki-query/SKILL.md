@@ -7,6 +7,11 @@ description: 查询 Galaxypedia wiki。按 quick、standard、deep 模式读取�
 
 使用这个 skill 回答“基于 wiki 的问题”。如果 wiki 没有足够内容，明确说明缺口，不要用模型记忆伪装成 wiki 事实。
 
+`wiki/index.md` 覆盖所有来源类型的已有知识页，不是 Zotero 全库目录。仅有 Zotero 题录、
+PDF Bundle 或 manifest pending/linked 状态不能证明有阅读总结；实际读取页面和来源证据。
+用户查询当前 Zotero 文库时，路由已安装 `zotero-dev-library`，明确区分题录信息与 wiki 综合。
+历史 `wiki/meta/zotero-index.md` 仅供回溯，不作为当前文库或摄入清单，不刷新它。
+
 ## 查询模式
 
 | 模式 | 触发 | 读取范围 | 用途 |

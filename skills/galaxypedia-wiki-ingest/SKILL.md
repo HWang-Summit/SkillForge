@@ -7,14 +7,22 @@ description: 摄入 Galaxypedia 的 raw Markdown、论文 PDF、Office、图片�
 
 将此 skill 作为 `/ingest` 的统一入口。先读 `SCHEMA.md`、`galaxypedia-wiki`、frontmatter/template 参考和 `wiki/index.md`。
 
+子 Skill 按名称在已启用的运行时安装中解析；模板参考相对于已安装 `galaxypedia-wiki`，不读取 vault 历史技能副本。
+仅摄入用户指定文件、条目或明确批次；inbox 单文件使用单文件 stage，只有目录批次才用 `stage-papers-inbox`。
+Zotero 存在题录或 Bundle 已 linked 不等于 wiki 摄入完成；须核验生成页面和来源记录。
+wiki/index 覆盖论文、网页、书籍和笔记等全部知识来源；manifest 还记录未完成状态。
+不生成全 Zotero 文献表，也不刷新历史 `zotero-index.md`。
+
 ## 先分流，不要猜测
 
 | 输入 | 处理 |
 | --- | --- |
-| `raw/**/*.md`（包括 `raw/papers/*/paper.mineru.md`） | 直接按本 skill 摄入。 |
+| 普通 `raw/**/*.md` | 直接按本 skill 摄入。 |
+| `raw/papers/*/paper.mineru.md` | 先检查对应 Bundle 已 `linked`/`ingested`；未完成或冲突状态先停止。 |
 | `raw/papers/_inbox/` | 手动投放的论文 PDF 待处理区；调用 Bridge `stage-papers-inbox`，绝不直接写 wiki。 |
 | `raw/papers/` 内 canonical bundle 的 PDF | 只有 manifest 状态为 `linked`/`ingested` 且已有 `paper.mineru.md` 才直接摄入；其余一律走 Bridge。 |
-| 非 `raw/papers/` 的 PDF、Office、图片或文件型 URL | 调用 `galaxypedia-mineru-import`，再摄入其 Markdown。 |
+| 外部论文 PDF | Bridge `stage-pdf`，题录核验与确认 commit 后再摄入。 |
+| 非论文 PDF、Office、图片或文件型 URL | 调用 `galaxypedia-mineru-import`，再摄入其 Markdown。 |
 | 网页/HTML URL | 调用 `galaxypedia-defuddle`，再摄入 Markdown。 |
 | Zotero item key 或 Zotero 附件 | 用 Bridge 的 `stage-zotero-item`，不是旧 SQLite ingest。 |
 | 用户明确要求永久清理 Zotero 回收站及对应论文资产 | 调用 `zotero-galaxypedia-removal-sync`；不得在本 skill 中直接删除 bundle 或 summary。 |
@@ -22,6 +30,8 @@ description: 摄入 Galaxypedia 的 raw Markdown、论文 PDF、Office、图片�
 不要因 Zotero collection 改名或移动而移动 paper bundle；`raw/papers/pdf-<sha-prefix>/` 是稳定路径。不要让非论文资料写入 Zotero。
 
 ## Papers Bridge 工作流
+
+以下带 `--apply` 的命令仅在相应无写入计划已展示、用户明确确认后执行；预览先省略 `--apply`。
 
 `raw/papers/_inbox/` 是手动下载论文的临时投放区；其下可按主题建子目录，但只放待处理的普通 PDF。`raw/papers/pdf-<sha-prefix>/` 才是每篇论文唯一的 hash bundle，包含标题型 PDF、`paper.mineru.md` 和 `paper.mineru/` 资源目录。不要把新 PDF 直接放在 `raw/papers` 根目录，也不要手动创建 `pdf-<hash>` bundle。Bridge 可执行文件由本机 `ZOTERO_GALAXYPEDIA_BRIDGE` 指向；从 Galaxypedia 根目录通过包装器调用：
 

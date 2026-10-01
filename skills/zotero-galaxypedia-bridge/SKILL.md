@@ -5,6 +5,11 @@ description: 将论文 PDF 安全转换为 Galaxypedia canonical bundle，并通
 
 # Zotero–Galaxypedia Bridge
 
+Bridge 只摄入用户指定的论文文件、条目或明确批次，不自动镜像整个 Zotero 文库。inbox 单文件
+用单文件 stage，不扩展为目录扫描写入。Bundle 建立和 `linked` 只证明桥接进度，wiki 摄入完成
+须核验知识页及来源记录。全库只读审计保留，但不触发摄入、写入知识索引或刷新历史 zotero-index。
+所有带 `--apply` 的写操作先省略该参数生成计划，展示影响并得到明确确认后执行。
+
 只用于带 `X-Zotero-Galaxypedia-API: 1` 标记且 capability probe 通过的官方 Zotero + Galaxypedia 插件。每次 `stage-*`、`commit-bundle` 或可能读取 API 的恢复操作前，先按 `zotero-dev-library` 从可访问本机 `127.0.0.1` 的主机执行环境 probe `/api/galaxypedia/v1/capabilities`。受限 runner 的 `fetch failed`/`EPERM` 必须在主机侧重试，不能误判为 API 停机；probe 未成功或缺少插件标记、capability 不完整或版本不兼容时停止，不向未验证端点写入。设置 `ZOTERO_GALAXYPEDIA_BRIDGE` 为当前 Zotero 项目中的 `tools/zotero-galaxypedia-bridge.mjs`，并设置 `GALAXYPEDIA_ROOT`；不要把本机绝对路径写入 SkillForge。
 
 写入前由主机侧 shell 从 `${SKILLFORGE_ENV_FILE:-$HOME/.skillforge/env}` 加载 `ZOTERO_LOCAL_API_TOKEN`，不要只依赖交互式 `~/.zshrc`，也绝不输出 token。
@@ -35,7 +40,7 @@ node "$ZOTERO_GALAXYPEDIA_BRIDGE" stage-papers-inbox \
 
 ### 1. Stage
 
-先执行对应 `stage-* --apply`。开始复制前 Bridge 先登记 `pending_copy`，开始 MinerU 前登记 `pending_parse`；成功后才登记 `pending_classification`。它不会创建 Zotero 条目、collection 或附件，也不会删除来源。可用 `--mineru-timeout <seconds>`（默认 600）和 `--mineru-interval <seconds>`（默认 5）调整 MinerU 调用；解析过程的标准输出/错误直接保留在终端，便于诊断。
+先预览对应 `stage-*`，确认后执行 `stage-* --apply`。开始复制前 Bridge 先登记 `pending_copy`，开始 MinerU 前登记 `pending_parse`；成功后才登记 `pending_classification`。它不会创建 Zotero 条目、collection 或附件，也不会删除来源。可用 `--mineru-timeout <seconds>`（默认 600）和 `--mineru-interval <seconds>`（默认 5）调整 MinerU 调用；解析过程的标准输出/错误直接保留在终端，便于诊断。
 
 ```sh
 node "$ZOTERO_GALAXYPEDIA_BRIDGE" stage-pdf <external.pdf> \
@@ -63,7 +68,7 @@ JSON 必须有 `version: 1`、`pdf_sha256`、`bundle`、`metadata.title/doi/year
 
 ### 2. Commit
 
-提案必须精确匹配 `version`、`pdf_sha256` 和 bundle。对已有 collection，用户已明确要求摄入时可执行：
+提案必须精确匹配 `version`、`pdf_sha256` 和 bundle。对已有 collection，展示 commit 计划并取得明确确认后可执行：
 
 ```sh
 node "$ZOTERO_GALAXYPEDIA_BRIDGE" commit-bundle raw/papers/pdf-... \

@@ -7,6 +7,10 @@ description: 检查 Galaxypedia wiki 健康状态。发现未索引页面、死�
 
 使用这个 skill 做 `/lint`、健康检查、结构检查、索引一致性检查。
 
+检查的是选择性摄入的多来源知识库。未摄入 Zotero 文献不算缺失知识页，不据此批量生成页面。
+manifest 可能包含 pending/linked Bundle，须区分合法待处理状态与已摄入来源的断链；不能要求每个
+Bundle 都已有 summary。历史 `zotero-index.md` 无需刷新，也不参与当前全库数量一致性检查。
+
 ## 检查范围
 
 1. `wiki/index.md` 是否列出所有 wiki 页面。

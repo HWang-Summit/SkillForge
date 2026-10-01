@@ -1,8 +1,8 @@
 interface:
-  display_name: "Galaxypedia Zotero"
-  short_description: "从 Zotero 摄入论文"
+  display_name: "Galaxypedia Zotero（历史兼容）"
+  short_description: "只读核查 Zotero 历史题录与快照，不用于新论文摄入"
   brand_color: "#7C3AED"
-  default_prompt: "使用 $galaxypedia-zotero-ingest 从 Zotero 文献库规划并摄入论文。"
+  default_prompt: "使用 $galaxypedia-zotero-ingest 只读核查指定历史题录或快照，不刷新索引或摄入新论文。"
 
 policy:
   allow_implicit_invocation: true

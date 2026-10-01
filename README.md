@@ -73,6 +73,12 @@ dist/            # 生成的兼容导出目录，不手动编辑
 
 ## Zotero–Galaxypedia 论文工作流
 
+Zotero UI 管理完整文献库，插件 UI 提供集成状态和安全控制，终端仅是 Agent 执行 Skill 的后端。
+Galaxypedia 选择性摄入论文、网页、书籍、笔记等资料，不复制整个 Zotero 目录。
+`wiki/index.md` 是已有知识页目录，source-index 追溯来源与页面；manifest 包含未完成处理状态。
+建立 Bundle、`linked` 状态或全库只读审计均不证明 wiki 已摄入。历史 `zotero-index.md` 不再刷新。
+当前文库查询由 `zotero-dev-library` 完成，知识综合由 `galaxypedia-wiki-query` 完成。
+
 `galaxypedia-wiki-ingest` 是论文摄入的唯一入口。非论文文件型来源继续使用 `galaxypedia-mineru-import`；位于 `raw/papers` 的 PDF、外部论文 PDF 和 Zotero 附件则使用 Zotero-Galaxypedia Bridge。
 
 每篇论文只有一个稳定 bundle：`raw/papers/pdf-<sha-prefix>/`，其中包含标题命名的 PDF、`paper.mineru.md` 与 `paper.mineru/` 资源。Zotero collection 的移动或改名不会移动 bundle。

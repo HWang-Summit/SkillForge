@@ -7,6 +7,10 @@ description: 通过官方 Zotero 进程中运行的 Galaxypedia 插件本地 API
 
 仅操作运行中的官方 Zotero + Galaxypedia 插件；正式库由官方 Zotero 管理，旧 staging 构建不得作为日常库宿主。绝不直接修改 `zotero.sqlite` 或 storage。
 
+Zotero 文库可大于 Galaxypedia 已摄入范围。查询只报告真实题录/附件，不创建 wiki 页面、全库
+Markdown 索引或假定已有阅读总结；知识综合交给已安装 `galaxypedia-wiki-query`。
+日常人工读写用 Zotero UI，本 Skill 的终端调用服务用户明确请求的 Agent 工作流。
+
 ## 连接与边界
 
 1. 在每次读写前，从可访问本机 `127.0.0.1` 的主机执行环境运行 `scripts/probe-dev-api.mjs`；它读取 `ZOTERO_LOCAL_API_URL`，默认本机 `/api/galaxypedia/v1` 端点。

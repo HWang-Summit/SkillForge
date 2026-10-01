@@ -9,12 +9,14 @@ description: Galaxypedia wiki 总入口。用于路由摄入、查询、检查�
 
 ## 必读上下文
 
+- 按名称从已启用的运行时安装目录发现子 Skill；下表 `skills/<name>` 指技能根目录下的同名安装，不指 vault 的历史 `skills/`。本 Skill 的 `references/` 相对于本次读取的 `SKILL.md` 解析。
+
 - 任何 wiki 操作前先读 `SCHEMA.md`。
 - 创建或更新页面前读 `wiki/index.md`。
 - 需要页面 frontmatter 或模板时，读：
-  - `skills/galaxypedia-wiki/references/frontmatter.md`
-  - `skills/galaxypedia-wiki/references/templates.md`
-- 需要 Obsidian wikilink、embed、callout、tag、LaTeX 或 Mermaid 语法时，读 `skills/galaxypedia-wiki/references/obsidian-markdown.md`。
+  - `references/frontmatter.md`
+  - `references/templates.md`
+- 需要 Obsidian wikilink、embed、callout、tag、LaTeX 或 Mermaid 语法时，读 `references/obsidian-markdown.md`。
 
 ## 路由
 
@@ -26,13 +28,17 @@ description: Galaxypedia wiki 总入口。用于路由摄入、查询、检查�
 | 查询、解释、总结、基于 wiki 回答 | `skills/galaxypedia-wiki-query/SKILL.md` |
 | Notion 文献阅读笔记、summary/concept/entity 同步到 Notion 阅读层 | `skills/galaxypedia-notion-literature-notes/SKILL.md` |
 | 健康检查、lint、找孤儿页/死链/重复 | `skills/galaxypedia-wiki-lint/SKILL.md` |
-| 非 `raw/papers` 的 PDF/Office/图片/文件型 URL 解析 | `skills/galaxypedia-mineru-import/SKILL.md` |
+| 非论文 PDF/Office/图片/文件型 URL 解析 | `skills/galaxypedia-mineru-import/SKILL.md` |
 | 网页文章 URL 清洗、defuddle、clean URL | `skills/galaxypedia-defuddle/SKILL.md` |
-| Zotero 文献、DOI、item key、collection、PDF 附件，`raw/papers/_inbox/` 中手动投放的 PDF，或 `raw/papers` 中未完成摄入的 PDF | `skills/zotero-galaxypedia-bridge/SKILL.md`，再按 `galaxypedia-wiki-ingest` 摄入 bundle Markdown |
+| 查询当前 Zotero 文库题录、分类或附件 | `skills/zotero-dev-library/SKILL.md`；不自动摄入 |
+| 摄入指定 Zotero 附件、外部论文 PDF、inbox 明确批次或未完成论文 Bundle | `skills/galaxypedia-wiki-ingest/SKILL.md` 路由 Bridge；只处理指定范围 |
 | canvas、白板、概念图、架构图、工作流图、topic map | `skills/galaxypedia-json-canvas/SKILL.md` |
 | 维护规则、脚本、文档风格 | `skills/galaxypedia-karpathy-guidelines/SKILL.md` |
 
 ## 核心边界
+
+- Zotero 全文库与 Galaxypedia 选择性摄入范围不同，wiki 也包含网页、书籍、笔记及派生知识。
+- `wiki/index.md` 列出现有知识页；source-index 追溯来源；manifest 包含未完成任务。Bundle/linked 不证明 wiki 摄入完成，须读回知识页与来源记录。历史 `zotero-index.md` 不再刷新。
 
 - `raw/` 是原始来源层。已有来源文件只读。
 - `raw/.manifest.json` 是唯一允许维护的 raw 元数据文件。
@@ -78,6 +84,6 @@ description: Galaxypedia wiki 总入口。用于路由摄入、查询、检查�
 ## 输出姿态
 
 - 优先使用 Obsidian wikilinks：`[[wiki/concepts/example.md]]`。
-- 对 Obsidian Markdown 细节，遵守 `skills/galaxypedia-wiki/references/obsidian-markdown.md`。
+- 对 Obsidian Markdown 细节，遵守本 Skill 的 `references/obsidian-markdown.md`。
 - 对用户报告时说明创建、更新、跳过、需要判断的事项。
 - 不要为“看起来更完整”而批量迁移旧页面；新规范只对新页面渐进使用。
