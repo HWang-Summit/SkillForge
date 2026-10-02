@@ -8,7 +8,7 @@ description: 摄入 Galaxypedia 的 raw Markdown、论文 PDF、Office、图片�
 将此 skill 作为 `/ingest` 的统一入口。先读 `SCHEMA.md`、`galaxypedia-wiki`、frontmatter/template 参考和 `wiki/index.md`。
 
 子 Skill 按名称在已启用的运行时安装中解析；模板参考相对于已安装 `galaxypedia-wiki`，不读取 vault 历史技能副本。
-仅摄入用户指定文件、条目或明确批次；inbox 单文件使用单文件 stage，只有目录批次才用 `stage-papers-inbox`。
+仅摄入用户指定文件、条目或明确批次；inbox 单文件使用 `stage-papers-inbox --source <file>`，只有明确目录批次才省略 `--source` 扫描整个 inbox。
 Zotero 存在题录或 Bundle 已 linked 不等于 wiki 摄入完成；须核验生成页面和来源记录。
 wiki/index 覆盖论文、网页、书籍和笔记等全部知识来源；manifest 还记录未完成状态。
 不生成全 Zotero 文献表，也不刷新历史 `zotero-index.md`。

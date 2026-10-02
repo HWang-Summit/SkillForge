@@ -30,11 +30,13 @@ collection 改名或移动不应移动 bundle。
 手动下载的论文放入 `raw/papers/_inbox/`（可递归分目录），而不是 `raw/papers` 根目录或手工创建的 `pdf-<hash>` 目录。它是临时输入区，不是 canonical source。按需扫描，不使用后台监听：
 
 ```sh
+# 单文件测试或单篇处理
 node "$ZOTERO_GALAXYPEDIA_BRIDGE" stage-papers-inbox \
+  --source raw/papers/_inbox/example.pdf \
   --vault-root "$GALAXYPEDIA_ROOT" --apply
 ```
 
-扫描只处理普通 PDF，忽略隐藏、非 PDF、`.part`、`.partial` 与 `.crdownload` 文件，并拒绝符号链接。新 hash 使用 `stage-legacy-pdf` 的同一安全路径；已 `linked`/`ingested`、已暂存或待修复的 hash 仅报告，绝不重新解析、降级 manifest 状态或删除 `_inbox` 重复文件。对新 stage，`_inbox` PDF 会在 commit 成功创建并读回 relative linked attachment 后才删除；失败、待分类或重复文件保留。
+`--source` 只处理指定的 vault-relative inbox PDF；省略它才扫描明确指定的整个 inbox 批次。扫描只处理普通 PDF，忽略隐藏、非 PDF、`.part`、`.partial` 与 `.crdownload` 文件，并拒绝符号链接。新 hash 使用 `stage-legacy-pdf` 的同一安全路径；已 `linked`/`ingested`、已暂存或待修复的 hash 仅报告，绝不重新解析、降级 manifest 状态或删除 `_inbox` 重复文件。对新 stage，`_inbox` PDF 会在 commit 成功创建并读回 relative linked attachment 后才删除；失败、待分类或重复文件保留。
 
 ## 两阶段流程
 
