@@ -85,7 +85,7 @@ Galaxypedia 选择性摄入论文、网页、书籍、笔记等资料，不复�
 
 1. `stage-pdf`、`stage-legacy-pdf`、`stage-papers-inbox` 或 `stage-zotero-item`：复制前先登记 `pending_copy`、MinerU 前登记 `pending_parse`、成功后才返回 `pending_classification` 与当前 collection tree；不写 Zotero，也不删除来源。手动下载的论文先放入 `raw/papers/_inbox/`，按需调用 `stage-papers-inbox` 递归扫描。`pending_copy`/`pending_parse` 修复后用 `resume-stage <bundle> --apply` 显式恢复，不自动重试。外部 PDF 须在 commit 前以 `verify-metadata` 写入绑定 hash/path 的可信题录，不能把 MinerU 正文或参考文献年份直接写入 Zotero。
 2. Codex/Claude 根据标题、摘要、DOI、关键词和 MinerU 正文开头生成可审计的分类提案。批量 `_inbox` stage 时使用每篇一个的 `outputs/classification-proposals/<pdf-sha256>.json`。优先已有二级 collection；低置信度或多个合理候选使用 `needs_review`，不写 collection。对已有 Zotero 条目，Zotero 的 title、DOI、年份和 creators 是 canonical metadata，MinerU metadata 仅用于内容验证、分类和 wiki；title/DOI 矛盾会停在 `content_mismatch`。
-3. `commit-bundle` 先生成 `--plan-file` 供审核；确认后以同一计划追加 `--apply`，并在中断时通过 `resume-commit` 恢复。它校验提案后创建/复用 Zotero 条目、追加确认的 collection、建立并读回验证 relative linked attachment。Zotero 来源默认在验证后删除旧 linked PDF，使 semantic canonical Bundle 成为唯一物理 PDF；历史保留源文件的 bundle 用 `cleanup-source` 显式收敛。新建一级/二级 collection 必须经用户明确确认。
+3. `commit-bundle` 先生成 `--plan-file` 供审核；确认后以同一计划追加 `--apply`，并在中断时通过 `resume-commit` 恢复。它校验提案后创建/复用 Zotero 条目、追加确认的 collection、建立并读回验证 relative linked attachment。只有旧附件明确为 `linked_file` 且不在 Zotero `storage/` 内时，Bridge 才清理旧物理 PDF；stored/未知来源由 Zotero 管理或保留。历史保留的普通 linked 来源用 `cleanup-source` 显式收敛。新建一级/二级 collection 必须经用户明确确认。
 4. 成功后摄入 bundle 的 `paper.mineru.md` 到 wiki；不会重复执行 MinerU。
 
 历史或手工管理的 Zotero PDF 可显式运行全库内容身份巡检：比较父条目 title/DOI、附件显示标题与

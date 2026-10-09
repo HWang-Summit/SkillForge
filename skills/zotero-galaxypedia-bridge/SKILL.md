@@ -81,7 +81,7 @@ node "$ZOTERO_GALAXYPEDIA_BRIDGE" commit-bundle raw/papers/.staging/pdf-... \
 # review the plan, then run the same command with --apply
 ```
 
-只有用户明确确认创建一级或二级 collection 时，才额外传入 `--allow-create-collection`。commit 会验证 proposal 和 collection tree，创建/复用条目、仅追加 collection、创建并读回验证 relative linked attachment；成功后才回收旧附件或来源。默认 Zotero 附件迁移会在新 attachment 验证、旧 attachment 回收后删除 hash 一致的旧 linked PDF，使 semantic canonical Bundle 成为唯一物理 PDF；显式 `--keep-source` 才保留来源。历史保留源文件的 bundle 可显式收敛：
+只有用户明确确认创建一级或二级 collection 时，才额外传入 `--allow-create-collection`。commit 会验证 proposal 和 collection tree，创建/复用条目、仅追加 collection、创建并读回验证 relative linked attachment；成功后才回收旧附件或来源。只有旧附件明确为 `linked_file`、旧 PDF hash 一致且不在 Zotero `storage/` 内时，Bridge 才能在新 attachment 验证、旧 attachment 回收后删除旧物理 PDF。stored、未知 linkMode 或 Zotero `storage/` 中的文件由 Zotero 管理/保留，Bridge 不直接删除；`cleanup-source` 也不能强制删除。显式 `--keep-source` 可保留普通 linked 来源。历史保留源文件的 bundle 可显式收敛：
 
 ```sh
 node "$ZOTERO_GALAXYPEDIA_BRIDGE" cleanup-source raw/papers/<namespace>/<year>/<slug>--<hash> \

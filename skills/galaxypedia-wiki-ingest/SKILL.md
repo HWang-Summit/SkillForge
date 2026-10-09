@@ -78,7 +78,7 @@ python scripts/zotero_ingest.py bridge commit-bundle raw/papers/.staging/pdf-...
 
 没有 `--allow-create-collection` 时，Bridge 会拒绝创建一级或二级 collection。`commit-bundle` 会校验 bundle/hash/collection tree，创建或复用 Zotero 条目，追加 collection，创建 relative linked PDF attachment，读回验证；成功后才回收旧附件或来源。完成后立即摄入 bundle 的 `paper.mineru.md`，不再调用 MinerU。
 
-Zotero 来源默认在新 relative attachment 验证、旧 attachment 回收后删除旧 linked PDF，使 semantic canonical Bundle 成为唯一物理 PDF。历史上显式保留源文件的完成 bundle 只能通过 Bridge `cleanup-source <bundle> --apply` 清理；不要手工删除。
+Zotero 来源只有旧附件明确为 `linked_file`、PDF hash 一致且不在 Zotero `storage/` 内时，才会在新 relative attachment 验证、旧附件回收后清理旧物理 PDF。stored/未知 linkMode 和 Zotero `storage/` 来源保留并由 Zotero 管理；`cleanup-source` 也不能强制删除。历史上显式保留的普通 linked 来源只能通过 Bridge `cleanup-source <bundle> --apply` 收敛；不要手工删除。
 
 如果 PDF 已有有效 `paper.mineru.md` 且 manifest 状态为 `linked`/`ingested`，直接摄入它。若 bundle 是 `pending_copy` 或 `pending_parse`，停止 wiki 写入并在修复来源/MinerU 后调用 Bridge `resume-stage --apply`；不自动重试。若状态为 `pending_classification`、`content_mismatch` 或 `needs_review`，同样停止 wiki 写入并报告该状态。
 
