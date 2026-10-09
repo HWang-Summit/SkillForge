@@ -65,7 +65,7 @@ node "$ZOTERO_GALAXYPEDIA_BRIDGE" verify-metadata raw/papers/.staging/pdf-... \
   --vault-root "$GALAXYPEDIA_ROOT" --metadata-file outputs/verified-metadata.json --apply
 ```
 
-JSON 必须有 `version: 1`、`pdf_sha256`、`bundle`、`metadata.title/doi/year`，以及 `verification.source`（可附 `source_url`、`rationale`）。Bridge 仅接受 `pending_classification` 的非 Zotero bundle；title 必须仍与 MinerU PDF title 一致，Zotero canonical metadata 不允许此命令覆盖。
+JSON 必须有 `version: 1`、`pdf_sha256`、`bundle`、`metadata.title/doi/year`，以及 `verification.source`（可附 `source_url`、`rationale`）。核验来源确认 DOI 或年份缺失时，对应字段明确使用空字符串，且必须填写 `verification.rationale`；未核验的 MinerU 年份不得代填。年份为空的最终目录使用 `undated`。Bridge 仅接受 `pending_classification` 的非 Zotero bundle；title 必须仍与 MinerU PDF title 一致，Zotero canonical metadata 不允许此命令覆盖。
 
 读取输出的 hash、bundle、metadata、MinerU Markdown 和真实 collection tree。根据 title、abstract、DOI、关键词及正文开头生成分类提案。批量 `_inbox` stage 时按 `outputs/classification-proposals/<pdf-sha256>.json` 一篇一份；单篇可使用 `outputs/classification-proposal.json`。优先已有二级 collection；低置信度或多个合理候选写 `needs_review`，不得 commit。
 
