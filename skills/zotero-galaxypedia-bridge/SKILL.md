@@ -17,13 +17,14 @@ Bridge 只摄入用户指定的论文文件、条目或明确批次，不自动�
 不要直接改 Zotero SQLite/storage、创建 stored attachment 或用旧的单阶段 `ingest-*` 命令处理新的论文流程。PDF 的唯一事实源是：
 
 ```text
-raw/papers/pdf-<sha-prefix>/
+raw/papers/.staging/pdf-<sha-prefix>/       # stage
+raw/papers/<namespace>/<year>/<slug>--<hash-prefix>/ # committed canonical
   <year> - <title>.pdf
   paper.mineru.md
   paper.mineru/
 ```
 
-collection 改名或移动不应移动 bundle。
+新论文 stage 位于 `raw/papers/.staging/pdf-<hash>`；reviewed commit 后 canonical 路径为 `raw/papers/<namespace>/<year>/<slug>--<hash-prefix>/`。`ingest_namespace` 来自 Galaxypedia `config/paper-namespaces.json`，在首次 commit 后冻结，不等同于 Zotero collection 或 wiki topic。旧 `raw/papers/pdf-<hash>` Bundle 继续兼容，collection 改名或移动不应移动已提交 bundle。
 
 ## Manual papers inbox
 
@@ -60,7 +61,7 @@ node "$ZOTERO_GALAXYPEDIA_BRIDGE" stage-zotero-item <item-key> \
 对外部或 `_inbox` PDF，MinerU 题录只是候选，不能把正文或参考文献中的年份/DOI当作最终 metadata。先用 Crossref、出版商等可追溯来源写出绑定 hash/path 的 JSON，再显式回填；该操作不写 Zotero：
 
 ```sh
-node "$ZOTERO_GALAXYPEDIA_BRIDGE" verify-metadata raw/papers/pdf-... \
+node "$ZOTERO_GALAXYPEDIA_BRIDGE" verify-metadata raw/papers/.staging/pdf-... \
   --vault-root "$GALAXYPEDIA_ROOT" --metadata-file outputs/verified-metadata.json --apply
 ```
 
@@ -73,15 +74,17 @@ JSON 必须有 `version: 1`、`pdf_sha256`、`bundle`、`metadata.title/doi/year
 提案必须精确匹配 `version`、`pdf_sha256` 和 bundle。对已有 collection，展示 commit 计划并取得明确确认后可执行：
 
 ```sh
-node "$ZOTERO_GALAXYPEDIA_BRIDGE" commit-bundle raw/papers/pdf-... \
+node "$ZOTERO_GALAXYPEDIA_BRIDGE" commit-bundle raw/papers/.staging/pdf-... \
   --vault-root "$GALAXYPEDIA_ROOT" \
-  --classification-file outputs/classification-proposal.json --apply
+  --classification-file outputs/classification-proposal.json \
+  --plan-file outputs/commit-plan.json
+# review the plan, then run the same command with --apply
 ```
 
-只有用户明确确认创建一级或二级 collection 时，才额外传入 `--allow-create-collection`。commit 会验证 proposal 和 collection tree，创建/复用条目、仅追加 collection、创建并读回验证 relative linked attachment；成功后才回收旧附件或来源。默认 Zotero 附件迁移会在新 attachment 验证、旧 attachment 回收后删除 hash 一致的旧 linked PDF，使 canonical bundle 成为唯一物理 PDF；显式 `--keep-source` 才保留来源。历史保留源文件的 bundle 可显式收敛：
+只有用户明确确认创建一级或二级 collection 时，才额外传入 `--allow-create-collection`。commit 会验证 proposal 和 collection tree，创建/复用条目、仅追加 collection、创建并读回验证 relative linked attachment；成功后才回收旧附件或来源。默认 Zotero 附件迁移会在新 attachment 验证、旧 attachment 回收后删除 hash 一致的旧 linked PDF，使 semantic canonical Bundle 成为唯一物理 PDF；显式 `--keep-source` 才保留来源。历史保留源文件的 bundle 可显式收敛：
 
 ```sh
-node "$ZOTERO_GALAXYPEDIA_BRIDGE" cleanup-source raw/papers/pdf-... \
+node "$ZOTERO_GALAXYPEDIA_BRIDGE" cleanup-source raw/papers/<namespace>/<year>/<slug>--<hash> \
   --vault-root "$GALAXYPEDIA_ROOT" --apply
 ```
 
@@ -92,7 +95,7 @@ commit 成功后，把 `paper.mineru.md` 交给 `galaxypedia-wiki-ingest`，不�
 `pending_copy` 或 `pending_parse` 在修复来源或 MinerU 后只能显式恢复，不进行自动云端重试；恢复只复制/解析，不创建或修改 Zotero：
 
 ```sh
-node "$ZOTERO_GALAXYPEDIA_BRIDGE" resume-stage raw/papers/pdf-... \
+node "$ZOTERO_GALAXYPEDIA_BRIDGE" resume-stage raw/papers/.staging/pdf-... \
   --vault-root "$GALAXYPEDIA_ROOT" --apply
 ```
 
@@ -153,3 +156,10 @@ node "$ZOTERO_GALAXYPEDIA_BRIDGE" apply-content-identity-repair \
 ## Zotero 回收站清理
 
 用户明确要求永久清空 Zotero 回收站并同步清理 Obsidian 时，改用 `zotero-galaxypedia-removal-sync`。它调用本 Bridge 的 `plan-trash-removal` 与 `purge-trash-removal`，对整个回收站使用版本化快照，检查 summary backlink、共享页面、manifest 与 source-index；存在 blocker 时绝不清空。
+
+
+## Storage plan and recovery
+
+`commit-bundle` 必须先生成并审核 `--plan-file`，再使用同一计划追加 `--apply`。Bridge 将跨文件系统与 Zotero API 状态写入 `raw/.bridge-transactions/`；中断时使用 `resume-commit --plan-file <plan> --apply`，不得重复创建附件。
+
+旧 Bundle 只通过 `audit-storage`、`plan-storage-migration <legacy-bundle> --namespace <key> --plan-file <plan>` 和用户确认后的 `apply-storage-migration --plan-file <plan> --apply` 迁移。

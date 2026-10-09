@@ -13,7 +13,7 @@ description: 当用户明确要求清空 Zotero 回收站并同步删除对应 G
 
 ## 两阶段操作
 
-先生成只读计划。计划会读取整个 Zotero 回收站，并保存回收站 key 快照、库版本、manifest hash、受影响 bundle、未关联条目及 blocker：
+先生成只读计划。计划会读取整个 Zotero 回收站，并保存回收站 key 快照、库版本、manifest hash、受影响 bundle、未关联条目及 blocker；Bundle 可能是 semantic path、legacy `pdf-<hash>` 或 journal 恢复状态：
 
 ```sh
 node "$ZOTERO_GALAXYPEDIA_BRIDGE" plan-trash-removal \
@@ -37,4 +37,4 @@ node "$ZOTERO_GALAXYPEDIA_BRIDGE" purge-trash-removal \
 
 `purge` 会重新检查 API、回收站版本/key 快照和 manifest hash。若任一变化、死链检查失败、共享知识页受影响或 Obsidian 事务失败，则不永久删除 Zotero 内容。成功时删除论文专属 bundle、MinerU、summary 与索引记录，再永久清空整个 Zotero 回收站；未关联 Obsidian 的回收站条目只在 Zotero 中删除。
 
-不要手工编辑计划 JSON，也不要用 `zotero-cli trash purge` 绕过 Bridge 的 Obsidian 检查。永久删除后的最小台账仅保留 item key、PDF hash、时间和结果。
+存在未完成 `raw/.bridge-transactions/` journal 时，先恢复或人工处理，不得继续清理。不要手工编辑计划 JSON，也不要用 `zotero-cli trash purge` 绕过 Bridge 的 Obsidian 检查。永久删除后的最小台账仅保留 item key、PDF hash、时间和结果。
