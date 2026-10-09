@@ -12,7 +12,7 @@
     {"name": "galaxypedia-mineru-import", "content_hash": "e1bda454df0f2eaecdfa1600b1d726c415f1fde917973c27f197548298e9bc1b"},
     {"name": "galaxypedia-notion-literature-notes", "content_hash": "3b8082796bf883fb84ad48423be3e090fbaf3a54017fd9afad1776bdc538b898"},
     {"name": "galaxypedia-wiki", "content_hash": "12f5629f03e67248247046d2222a37d92c154c25990dd326bb267912c5aa7307"},
-    {"name": "galaxypedia-wiki-ingest", "content_hash": "8ad10276c90f8c915f9c8ec33f35a8ded659e39c32b59f11faf0d3ef85ba93e4"},
+    {"name": "galaxypedia-wiki-ingest", "content_hash": "8e9164decd0e4ce8429c21144ffcd241e11caa73fb4aa1f6e6b4358c435b1a27"},
     {"name": "galaxypedia-wiki-lint", "content_hash": "04fb99b55f370f812b799417d3f8050b1f071e6c147232a81ac451fe1239a608"},
     {"name": "galaxypedia-wiki-query", "content_hash": "4c7165b129dd764077f0f30684954b758c4a25acfc72cfb608de3e9e5e1d1123"},
     {"name": "galaxypedia-zotero-ingest", "content_hash": "8ea5865a95975eaea57ea7ea459dbbb8b59f0496ee2f0a632c2c8d30be3637ff"},
@@ -25,6 +25,8 @@
     {"name": "skillforge-repair-cc-switch-skill", "content_hash": "392d431b6d9309537d1aab9cb19f7ec556fe879a5850de51bb652cbe51e4d6f0"},
     {"name": "skillforge-sync-installed-skills", "content_hash": "a41645c4b35491b20efc93d20d53583fb29427dfb204f3fe52457ae1bbe5af9f"},
     {"name": "zotero-cloud-library", "content_hash": "4097526fee9a3f1a8a094f21fe3808da0119c1375ae7770ea6b4a9f3bd0b166e"},
+    {"name": "zotero-galaxypedia-bridge", "content_hash": "056082c2e537177fe373e4f142ce09cb6b37b450508e590ccb080ecc515c0ea2"},
+    {"name": "zotero-galaxypedia-removal-sync", "content_hash": "4391d7d6a6d1e88a03d8b7e61d7381568872374286f99b2f00c5f2a8a2201ca5"},
     {"name": "zotero-local-pdf-attach", "content_hash": "82257f2c1488facfc49dc96ec9bfbfedaf04874528e460c299a7c6388dd73132"}
   ]
 }
