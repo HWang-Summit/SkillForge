@@ -2,6 +2,66 @@
 
 以下模板用于新建页面。旧页面不需要批量迁移。
 
+## Domain (dynamic navigation)
+
+```markdown
+---
+type: domain
+title: "Domain"
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+tags:
+  - domain
+status: developing
+related: []
+sources: []
+---
+
+# Domain
+
+One-sentence scope; do not invent source-derived claims.
+
+## Topics
+
+- [[wiki/topics/example-topic.md|Example Topic]]
+```
+
+## Topic (dynamic navigation)
+
+```markdown
+---
+type: topic
+title: "Topic"
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+tags:
+  - topic
+status: developing
+related: []
+sources: []
+---
+
+# Topic
+
+One-sentence scope; create only for multiple sources or a source plus reusable concept/entity.
+
+## Domain
+
+- [[wiki/domains/example-domain.md|Example Domain]]
+
+## Summaries
+
+- [[wiki/summaries/example-source.md|Example Source]]
+
+## Concepts
+
+## Entities
+```
+
+New or updated knowledge pages link back to a confirmed Topic in the body or
+`## See also`. A page may link to several Topics. No credible match means
+report as unclassified instead of creating an empty page.
+
 ## Summary
 
 ```markdown

@@ -21,6 +21,8 @@ sources:
 
 ## type
 
+- `domain`：动态宽领域导航页，正文链接现有 Topic。
+- `topic`：动态研究主题导航页，正文链接 Domain 与相关知识页。
 - `summary`：单个来源摘要。
 - `entity`：人物、组织、项目、软件、数据集。
 - `concept`：概念、方法、理论、算法。
@@ -76,3 +78,5 @@ verdict: ""
 - 日期使用 `YYYY-MM-DD`。
 - YAML 中的 wikilink 必须加引号。
 - 每次编辑页面内容时更新 `updated`。
+- 导航页可以使用 `sources: []`，只写范围说明和导航链接；如加入基于来源的综合论断，需补来源及 provenance。
+- 旧 concept 的 `domain: ""` 字符串是历史描述字段，不是图谱链接的事实源；知识关系使用正文内链。

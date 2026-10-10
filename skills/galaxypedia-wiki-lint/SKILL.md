@@ -15,7 +15,7 @@ Bundle 都已有 summary。历史 `zotero-index.md` 无需刷新，也不参与�
 
 1. `wiki/index.md` 是否列出所有 wiki 页面。
 2. index 中的链接是否存在。
-3. wiki 页面是否有入链或合理入口。
+3. wiki 页面是否有入链或合理入口；统计非登记页入链时排除 `wiki/index.md`、`wiki/meta/source-index.md` 与 `wiki/log.md`。
 4. 页面中提到的既有实体/概念是否缺少 wikilink。
 5. 是否存在明显重复概念页或实体页。
 6. 是否有 “currently/recently/as of/当前/最近” 等时间敏感声明。
@@ -23,13 +23,14 @@ Bundle 都已有 summary。历史 `zotero-index.md` 无需刷新，也不参与�
 8. `raw/.manifest.json` 是否为合法 JSON，记录的 source 是否存在。
 9. `wiki/meta/source-index.md` 是否存在，且与 manifest 和 wiki 页面 `## Sources` 一致。
 10. `.canvas` 文件是否为合法 JSON，边引用是否有效，file node 是否指向真实 vault 文件。
+11. Domain/Topic 是否已列在 index、正文链接是否有效、Domain → Topic → 知识页与知识页回链 Topic 是否一致；未归类只报告，不自动猜测归属。
 
 ## 执行顺序
 
 1. 读 `SCHEMA.md` 和 `wiki/index.md`。
 2. 用 `find wiki -name '*.md'` 获取实际页面列表。
 3. 解析 index 链接，找未索引页面和死链。
-4. 扫描 wikilinks，统计入链，找孤儿页。
+4. 扫描正文 Markdown 链接与 wikilinks，统计排除 index/source-index/log 的知识入链，找孤儿页。检查 Domain/Topic 导航和回链。
 5. 抽样或针对性扫描页面内容，找过时声明、空标题、缺失来源、frontmatter 缺口。
 6. 校验 `raw/.manifest.json`：JSON 合法、source 路径存在、生成页面路径存在。
 7. 校验 `wiki/meta/source-index.md`：source 路径存在，关联 wiki 页面存在，manifest 中已摄入 source 有对应条目。

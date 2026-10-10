@@ -87,7 +87,8 @@ Zotero 来源只有旧附件明确为 `linked_file`、PDF hash 一致且不在 Z
 对最终 Markdown 计算 hash；相同 manifest hash 默认跳过，只有明确 re-ingest 才重做。完整读取正文及相关的 Obsidian 图像嵌入，然后：
 
 1. 创建或更新同语言 summary；只在有复用价值时更新 entity、concept、comparison。
-2. 更新 `wiki/index.md`、`wiki/meta/source-index.md`、`wiki/log.md` 和 `raw/.manifest.json`。
+   检索现有 Domain/Topic 并优先复用：新 Topic 至少组织两个来源，或一个来源与现有可复用 concept/entity；新 Domain 仅在现有领域都不合适且有明确 Topic 时创建。添加 Topic → 知识页和知识页 → Topic 的正文链接；允许多个 Topic。不能可靠分类时记录待归类，不阻断摄入或按 Zotero collection / Bridge `ingest_namespace` 猜测。
+2. 更新 `wiki/index.md`、`wiki/meta/source-index.md`、`wiki/log.md` 和 `raw/.manifest.json`。纯知识导航关系变动只更新受影响 wiki 页、index 和追加式 log；不修改 raw 或 manifest。
 3. 保留来源、PDF hash、MinerU 输出、Zotero item/attachment key、分类 action 与 collection path 的 provenance。
 
 不修改 raw 源文件，不覆盖矛盾的既有观点，不写入 token、上传 URL 或签名 URL。批量超过十篇时分批报告进度。

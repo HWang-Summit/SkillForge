@@ -33,6 +33,8 @@ PDF Bundle 或 manifest pending/linked 状态不能证明有阅读总结；实�
 
 ## 候选页选择
 
+先看 index，匹配时可以沿 Domain → Topic 导航到相关 summary、concept、entity、comparison；这些导航页不是来源事实或 provenance。原文核验仍沿页面 `## Sources`、source-index 和 manifest 回到 raw。
+
 - 精确标题命中优先于关键词命中。
 - summary 页适合回答“某篇来源说了什么”。
 - concept 页适合回答“某概念是什么、如何演化、有哪些来源支持”。
