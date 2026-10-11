@@ -213,3 +213,39 @@ verdict: ""
 
 ## See also
 ```
+
+
+## Source Area (provenance navigation)
+
+```markdown
+---
+type: meta
+title: "Source Area"
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+tags:
+  - meta
+  - source-area
+status: developing
+meta_kind: source-area
+source_layer: papers
+related: []
+sources: []
+---
+
+# Source Area
+
+说明 source type 或稳定 semantic namespace 的 raw provenance 范围。
+
+## Raw Markdown Sources
+
+- [[raw/papers/example/paper.mineru.md]]
+
+## Wiki Summaries
+
+- [[wiki/summaries/example.md|Example Summary]]
+```
+
+Source-area pages are derived navigation, not a replacement for
+`wiki/meta/source-index.md` or `raw/.manifest.json`. Do not create them for
+hash bundles, staging/inbox directories, MinerU assets, or individual images.

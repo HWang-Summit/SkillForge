@@ -47,6 +47,7 @@ description: Galaxypedia wiki 总入口。用于路由摄入、查询、检查�
 - 新论文先暂存在 `raw/papers/.staging/pdf-<hash>/`，经核验 commit 后存于 `raw/papers/<ingest-namespace>/<year>/<slug>--<hash>/`；旧 `raw/papers/pdf-<hash>/` Bundle 继续兼容。Bridge 存储命名空间在提交时冻结，不随 wiki 分类、Zotero collection 变化而移动。
 - `wiki/` 是结构化知识层。新增或修改 wiki 页面必须同步 `wiki/index.md`。
 - `wiki/domains/` 与 `wiki/topics/` 是动态知识导航层；复用优先，证据充分时才创建；通过正文内链连接 Domain → Topic → 知识页，并由知识页回链 Topic。它们不决定 Bridge 物理路径。
+- `wiki/source-areas/` 是 raw provenance 的派生导航层，按 source type 和稳定 namespace 链接 raw Markdown 与 summary；不替代 source-index，不把 pdf hash、staging、inbox 或 assets 变成知识节点。
 - `wiki/canvas/` 是 Obsidian Canvas 派生视图目录；Canvas 不替代 `wiki/index.md`、source-index 或 Graph View。
 - `wiki/log.md` 只能追加，不能编辑历史记录。
 - 发现矛盾时标注双方来源，不能静默覆盖旧信息。
