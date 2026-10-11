@@ -80,4 +80,4 @@ verdict: ""
 - 每次编辑页面内容时更新 `updated`。
 - 导航页可以使用 `sources: []`，只写范围说明和导航链接；如加入基于来源的综合论断，需补来源及 provenance。
 - 旧 concept 的 `domain: ""` 字符串是历史描述字段，不是图谱链接的事实源；知识关系使用正文内链。
-- source-area 导航页使用 `type: meta` 与 `meta_kind: source-area`，通常保持 `sources: []`，不写新的科学结论。
+- source-area 使用 `type: meta`、`meta_kind: source-area`、`source_layer: papers/articles/books/notes`；namespace 叶页加 `source_namespace`。导航页保持 `sources: []`，不写新的科学结论。

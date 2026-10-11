@@ -16,6 +16,7 @@ description: Galaxypedia wiki 总入口。用于路由摄入、查询、检查�
 - 需要页面 frontmatter 或模板时，读：
   - `references/frontmatter.md`
   - `references/templates.md`
+- 维护来源导航或检查摄入后的来源入口时，读 `references/source-areas.md`。
 - 需要 Obsidian wikilink、embed、callout、tag、LaTeX 或 Mermaid 语法时，读 `references/obsidian-markdown.md`。
 
 ## 路由

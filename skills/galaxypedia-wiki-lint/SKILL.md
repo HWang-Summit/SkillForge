@@ -15,7 +15,7 @@ Bundle 都已有 summary。历史 `zotero-index.md` 无需刷新，也不参与�
 
 1. `wiki/index.md` 是否列出所有 wiki 页面。
 2. index 中的链接是否存在。
-3. wiki 页面是否有入链或合理入口；统计非登记页入链时排除 `wiki/index.md`、`wiki/meta/source-index.md` 与 `wiki/log.md`。
+3. wiki 页面是否有入链或合理入口；统计非登记页入链时排除 `wiki/index.md`、`wiki/meta/source-index.md`、`wiki/log.md` 与 `wiki/source-areas/`。
 4. 页面中提到的既有实体/概念是否缺少 wikilink。
 5. 是否存在明显重复概念页或实体页。
 6. 是否有 “currently/recently/as of/当前/最近” 等时间敏感声明。
@@ -24,7 +24,7 @@ Bundle 都已有 summary。历史 `zotero-index.md` 无需刷新，也不参与�
 9. `wiki/meta/source-index.md` 是否存在，且与 manifest 和 wiki 页面 `## Sources` 一致。
 10. `.canvas` 文件是否为合法 JSON，边引用是否有效，file node 是否指向真实 vault 文件。
 11. Domain/Topic 是否已列在 index、正文链接是否有效、Domain → Topic → 知识页与知识页回链 Topic 是否一致；未归类只报告，不自动猜测归属。
-12. `wiki/source-areas/` 是否已列在 index，source-area raw Markdown 链接是否存在，是否错误暴露 `.staging`、`_inbox`、pdf hash、MinerU 资源或图片节点。
+12. source-area 是否已列在 index、source_layer/namespace 是否正确、原文→summary 对应关系是否有既有来源记录支持、Bridge 状态与 wiki 覆盖是否分开。禁止 staging/inbox/assets 或每个 hash 目录的独立导航页；legacy raw Markdown 链接合法。来源关联的历史缺项只报告，不以派生目录静默修复 provenance。
 
 ## 执行顺序
 

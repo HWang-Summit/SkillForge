@@ -89,7 +89,7 @@ Zotero 来源只有旧附件明确为 `linked_file`、PDF hash 一致且不在 Z
 1. 创建或更新同语言 summary；只在有复用价值时更新 entity、concept、comparison。
    检索现有 Domain/Topic 并优先复用：新 Topic 至少组织两个来源，或一个来源与现有可复用 concept/entity；新 Domain 仅在现有领域都不合适且有明确 Topic 时创建。添加 Topic → 知识页和知识页 → Topic 的正文链接；允许多个 Topic。不能可靠分类时记录待归类，不阻断摄入或按 Zotero collection / Bridge `ingest_namespace` 猜测。
 2. 更新 `wiki/index.md`、`wiki/meta/source-index.md`、`wiki/log.md` 和 `raw/.manifest.json`。纯知识导航关系变动只更新受影响 wiki 页、index 和追加式 log；不修改 raw 或 manifest。
-   如出现新的稳定 source type 或 semantic namespace，复用或创建对应 `wiki/source-areas/` 导航页，并链接实际 raw Markdown 与 summary；不要为 `pdf-<hash>`、`.staging`、`_inbox`、MinerU 资源或图片创建来源页。
+   每次完成用户指定来源的摄入后，按已安装 `galaxypedia-wiki` 的 `references/source-areas.md` 更新所属 source-area 的原文→summary 链接和状态；新稳定 namespace 才建新叶页。不扫描全库写入，不为单个 `pdf-<hash>` 目录、staging/inbox、MinerU 资源或图片创建来源页；允许链接 legacy Bundle 内真实的 `paper.mineru.md`。
 3. 保留来源、PDF hash、MinerU 输出、Zotero item/attachment key、分类 action 与 collection path 的 provenance。
 
 不修改 raw 源文件，不覆盖矛盾的既有观点，不写入 token、上传 URL 或签名 URL。批量超过十篇时分批报告进度。
