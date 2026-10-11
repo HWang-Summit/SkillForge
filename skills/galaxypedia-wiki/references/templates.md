@@ -59,8 +59,10 @@ One-sentence scope; create only for multiple sources or a source plus reusable c
 ```
 
 New or updated knowledge pages link back to a confirmed Topic in the body or
-`## See also`. A page may link to several Topics. No credible match means
-report as unclassified instead of creating an empty page.
+`## See also`. A page may link to several Topics. Paper-derived pages without
+a credible match can remain unclassified. Formal daily-source pages instead
+link directly to Daily Knowledge and appear in its pending-organizing list;
+see `references/daily-knowledge.md`. Do not create an empty Topic.
 
 ## Summary
 
@@ -250,3 +252,28 @@ Scope of this source type or stable storage namespace, not a scientific Topic.
 
 Source types may be empty. Namespace leaves require actual sources. Read
 `references/source-areas.md` for selection, coverage, and maintenance rules.
+
+## Daily Domain fallback
+
+Use the ordinary `domain` frontmatter and the stable Daily Knowledge path.
+A confirmed daily Topic links to this Domain and its knowledge pages.
+With no suitable Topic, add reciprocal body navigation instead:
+
+```markdown
+# 日常知识
+
+## Topics
+
+## 待整理内容
+
+- [[wiki/summaries/example-daily-source.md|待整理的日常来源]]
+```
+
+The pending knowledge page links back in `## See also`:
+
+```markdown
+- [[wiki/domains/daily-knowledge.md|日常知识]]
+```
+
+Once a trusted Topic exists, replace only the organizing fallback relations.
+Keep scientific/source content, language, and existing research links unchanged.

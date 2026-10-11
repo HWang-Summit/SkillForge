@@ -36,6 +36,7 @@ PDF Bundle 或 manifest pending/linked 状态不能证明有阅读总结；实�
 先看 index，匹配时可以沿 Domain → Topic 导航到相关 summary、concept、entity、comparison；这些导航页不是来源事实或 provenance。原文核验仍沿页面 `## Sources`、source-index 和 manifest 回到 raw；source-area 页面只用于快速定位 raw provenance，不是事实来源；目录里的 parsed/linked/content_mismatch 来源不等于已有 wiki summary，不能用导航目录推断已摄入状态。
 
 - 精确标题命中优先于关键词命中。
+- 日常工具、环境、知识库维护与 AI 实践问题可沿 `wiki/domains/daily-knowledge.md` 和日常 Topic 查找；“待整理内容”仍有入口。导航页只缩小候选范围，答案依据实际知识页和来源，不把来源目录当科学归属。
 - summary 页适合回答“某篇来源说了什么”。
 - concept 页适合回答“某概念是什么、如何演化、有哪些来源支持”。
 - entity 页适合回答“某人/组织/项目在 wiki 中出现在哪里、与哪些概念相关”。

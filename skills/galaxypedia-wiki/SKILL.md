@@ -17,6 +17,7 @@ description: Galaxypedia wiki 总入口。用于路由摄入、查询、检查�
   - `references/frontmatter.md`
   - `references/templates.md`
 - 维护来源导航或检查摄入后的来源入口时，读 `references/source-areas.md`。
+- 正式非论文日常来源的知识归属和待整理兜底，读 `references/daily-knowledge.md`。
 - 需要 Obsidian wikilink、embed、callout、tag、LaTeX 或 Mermaid 语法时，读 `references/obsidian-markdown.md`。
 
 ## 路由
@@ -48,6 +49,7 @@ description: Galaxypedia wiki 总入口。用于路由摄入、查询、检查�
 - 新论文先暂存在 `raw/papers/.staging/pdf-<hash>/`，经核验 commit 后存于 `raw/papers/<ingest-namespace>/<year>/<slug>--<hash>/`；旧 `raw/papers/pdf-<hash>/` Bundle 继续兼容。Bridge 存储命名空间在提交时冻结，不随 wiki 分类、Zotero collection 变化而移动。
 - `wiki/` 是结构化知识层。新增或修改 wiki 页面必须同步 `wiki/index.md`。
 - `wiki/domains/` 与 `wiki/topics/` 是动态知识导航层；复用优先，证据充分时才创建；通过正文内链连接 Domain → Topic → 知识页，并由知识页回链 Topic。它们不决定 Bridge 物理路径。
+- 正式非论文来源使用“日常知识”入口：可靠日常 Topic 或直接 Daily Domain 回链与待整理列表；不替代 source-areas、不迁移 raw、不改论文分支。
 - `wiki/source-areas/` 是 raw provenance 的派生导航层，按 source type 和稳定 namespace 链接 raw Markdown 与 summary；不替代 source-index，不把 pdf hash、staging、inbox 或 assets 变成知识节点。
 - `wiki/canvas/` 是 Obsidian Canvas 派生视图目录；Canvas 不替代 `wiki/index.md`、source-index 或 Graph View。
 - `wiki/log.md` 只能追加，不能编辑历史记录。

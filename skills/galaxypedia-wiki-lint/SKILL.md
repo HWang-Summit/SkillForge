@@ -25,13 +25,14 @@ Bundle 都已有 summary。历史 `zotero-index.md` 无需刷新，也不参与�
 10. `.canvas` 文件是否为合法 JSON，边引用是否有效，file node 是否指向真实 vault 文件。
 11. Domain/Topic 是否已列在 index、正文链接是否有效、Domain → Topic → 知识页与知识页回链 Topic 是否一致；未归类只报告，不自动猜测归属。
 12. source-area 是否已列在 index、source_layer/namespace 是否正确、原文→summary 对应关系是否有既有来源记录支持、Bridge 状态与 wiki 覆盖是否分开。禁止 staging/inbox/assets 或每个 hash 目录的独立导航页；legacy raw Markdown 链接合法。来源关联的历史缺项只报告，不以派生目录静默修复 provenance。
+13. 正式日常来源的 summary 及相关知识页，是否有正文链路经日常 Topic 到 Daily Domain，或直接兜底回链与 Domain 的“待整理内容”条目。排除 source-area/index/log、标签和普通 related 字符串后再判断归属；有兜底但未细分不算无主孤儿。
 
 ## 执行顺序
 
 1. 读 `SCHEMA.md` 和 `wiki/index.md`。
 2. 用 `find wiki -name '*.md'` 获取实际页面列表。
 3. 解析 index 链接，找未索引页面和死链。
-4. 扫描正文 Markdown 链接与 wikilinks，统计排除 index/source-index/log/source-areas 的知识入链，找孤儿页。检查 Domain/Topic 导航和回链。
+4. 扫描正文 Markdown 链接与 wikilinks，统计排除 index/source-index/log/source-areas 的知识入链，找孤儿页。检查 Domain/Topic 导航和回链。 针对正式非论文来源，同时按 `references/daily-knowledge.md`（相对于已安装的 wiki skill）验证日常入口及兜底双向关系；不把论文审慎未归类误判为必须加入日常 Domain。
 5. 抽样或针对性扫描页面内容，找过时声明、空标题、缺失来源、frontmatter 缺口。
 6. 校验 `raw/.manifest.json`：JSON 合法、source 路径存在、生成页面路径存在。
 7. 校验 `wiki/meta/source-index.md`：source 路径存在，关联 wiki 页面存在，manifest 中已摄入 source 有对应条目。

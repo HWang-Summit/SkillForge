@@ -81,3 +81,4 @@ verdict: ""
 - 导航页可以使用 `sources: []`，只写范围说明和导航链接；如加入基于来源的综合论断，需补来源及 provenance。
 - 旧 concept 的 `domain: ""` 字符串是历史描述字段，不是图谱链接的事实源；知识关系使用正文内链。
 - source-area 使用 `type: meta`、`meta_kind: source-area`、`source_layer: papers/articles/books/notes`；namespace 叶页加 `source_namespace`。导航页保持 `sources: []`，不写新的科学结论。
+- 日常入口仍使用 `type: domain`，日常主题仍为 `type: topic`；不新增排他 daily/research 类型。标签或 related 字符串不能替代正文导航链接。
